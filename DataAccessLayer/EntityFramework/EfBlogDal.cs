@@ -7,13 +7,24 @@ using DataAccessLayer.Abstract;
 using DataAccessLayer.Concrete;
 using DataAccessLayer.Repository;
 using EntityLayer.Concrete;
+using Microsoft.EntityFrameworkCore;
 
 namespace DataAccessLayer.EntityFramework
 {
-    public class EfBlogDal:GenericRepository<Blog>,IBlogDal
+    public class EfBlogDal : GenericRepository<Blog>, IBlogDal
     {
+        private readonly WithCodesContext _context;
         public EfBlogDal(WithCodesContext context) : base(context)
         {
+            _context = context;
+        }
+
+        public List<Blog> GetBlogList()
+        {
+
+            var values = _context.Blogs.Include(x => x.Category).Include(x => x.AppUser).OrderByDescending(x => x.CreateDate).ToList();
+            return values;
+
         }
     }
 }

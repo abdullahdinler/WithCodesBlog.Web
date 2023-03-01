@@ -1,0 +1,25 @@
+﻿@model List<Blog>
+
+<div class="col-lg-12">
+    <div class="sidebar-item recent-posts">
+        <div class="sidebar-heading">
+            <h2>Son Yazılar</h2>
+        </div>
+        <div class="content">
+            <ul>
+
+                @foreach (var item in Model)
+                {
+                    <li>
+                        <a href="post-details.html">
+                            <h5>@item.Title</h5>
+                            <span>@item.CreateDate.ToString("dd MMM yyyy")</span>
+                        </a>
+                    </li>
+                }
+
+
+            </ul>
+        </div>
+    </div>
+</div>

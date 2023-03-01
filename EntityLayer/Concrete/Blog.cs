@@ -9,7 +9,7 @@ namespace EntityLayer.Concrete
     public class Blog:BaseEntity
     {
         public int CategoryId { get; set; }
-        public int AuthorId { get; set; }
+        public int AppUserId { get; set; }
         public string? Title { get; set; }
         public string? ContentText { get; set; }
         public string? ThumbnailImageUri { get; set; }
