@@ -16,7 +16,7 @@
                     <div class="item-content">
                         <div class="main-content">
                             <div class="meta-category">
-                                <a href="post-details.html"><h4> <span>@item.Title</span></h4></a>
+                                <a href="/blog/details/@item.Id"><h4> <span>@item.Title</span></h4></a>
                             </div>
                             <ul class="post-info">
                                 <li><a href="#">@item.AppUser.NameSurname</a></li>
@@ -48,7 +48,7 @@
                                         <img src="@item.ImageUri" alt="">
                                     </div>
                                     <div class="down-content">
-                                        <a href="post-details.html"><h4><span>@item.Title</span></h4></a>
+                                        <a href="/blog/details/@item.Id"><h4><span>@item.Title</span></h4></a>
                                         <ul class="post-info">
                                             <li><a href="#">@item.AppUser.NameSurname</a></li>
                                             <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
@@ -65,7 +65,7 @@
 
                         <div class="col-lg-12">
                             <div class="main-button">
-                                <a href="blog.html">Tüm yazıları görüntüle</a>
+                                <a href="/Blog/AllBlog/">Tüm yazıları görüntüle</a>
                             </div>
                         </div>
                         

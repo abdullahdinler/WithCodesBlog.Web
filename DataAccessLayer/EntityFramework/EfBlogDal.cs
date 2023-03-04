@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Linq.Expressions;
 using System.Text;
 using System.Threading.Tasks;
 using DataAccessLayer.Abstract;
@@ -25,6 +26,12 @@ namespace DataAccessLayer.EntityFramework
             var values = _context.Blogs.Include(x => x.Category).Include(x => x.AppUser).OrderByDescending(x => x.CreateDate).ToList();
             return values;
 
+        }
+
+        public Blog? GetBlog(Expression<Func<Blog, bool>> filter)
+        {
+            var values = _context.Blogs.Include(x => x.Category).Include(x => x.AppUser).FirstOrDefault(filter);
+            return values;
         }
     }
 }

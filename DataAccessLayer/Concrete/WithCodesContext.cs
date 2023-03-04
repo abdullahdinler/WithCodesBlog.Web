@@ -15,7 +15,7 @@ namespace DataAccessLayer.Concrete
         {
             
         }
-       
+        
 
         public DbSet<AppUser>? AppUsers { get; set; }
         public DbSet<About>? Abouts { get; set; }

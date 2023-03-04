@@ -19,13 +19,8 @@
     <link rel="stylesheet" href="/withcodes/assets/css/fontawesome.css">
     <link rel="stylesheet" href="/withcodes/assets/css/templatemo-stand-blog.css">
     <link rel="stylesheet" href="/withcodes/assets/css/owl.css">
-    <!--
-
-    TemplateMo 551 Stand Blog
-
-    https://templatemo.com/tm-551-stand-blog
-
-    -->
+   
+    
 </head>
 
 <body>
@@ -50,7 +45,7 @@
                 <div class="collapse navbar-collapse" id="navbarResponsive">
                     <ul class="navbar-nav ml-auto">
                         <li class="nav-item">
-                            <a class="nav-link" href="index.html">
+                            <a class="nav-link" asp-controller="Blog" asp-action="Index">
                                 Ana Sayfa
                                 <span class="sr-only">(current)</span>
                             </a>
@@ -59,7 +54,7 @@
                             <a class="nav-link" href="about.html">Hakkımızda</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="blog.html">Bloglar</a>
+                            <a class="nav-link" asp-controller="Blog" asp-action="AllBlog">Bloglar</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="post-details.html">Kategoriler</a>

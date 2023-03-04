@@ -16,7 +16,7 @@ namespace WithCodesBlog.Web.UI.ViewComponents.Blog
         {
             var result = await Task.Run(() =>
             {
-                return _blog.GetAllList().OrderByDescending(x => x.CreateDate).Take(3).ToList();
+                return _blog.GetAllList()!.OrderByDescending(x => x.CreateDate).Take(3).ToList();
             });
 
             return View(result);
