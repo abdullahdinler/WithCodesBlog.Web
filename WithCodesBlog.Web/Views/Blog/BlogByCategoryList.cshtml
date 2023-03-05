@@ -1,53 +1,41 @@
 ﻿@model List<Blog>
-
-
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "BlogByCategoryList";
     Layout = "~/Views/Shared/_WithCodesLayout.cshtml";
 }
 
-<div class="main-banner header-text">
-    <div class="container-fluid">
-        <div class="owl-banner owl-carousel">
-            @foreach (var item in Model.Take(6))
-            {
-                
-                <div class="item">
-                    <img src="@item.ThumbnailImageUri" alt="">
-                    <div class="item-content">
-                        <div class="main-content">
-                            <div class="meta-category">
-                                <span>@item.Category.Name</span>
-                                <a asp-controller="Blog" asp-action="Details" asp-route-slug="@item.Slug"><h4>@item.Title</h4></a>
-                            </div>
-                            <ul class="post-info">
-                                <li><a href="#">@item.AppUser.NameSurname</a></li>
-                                <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
-                                <li><a href="#">@item.Comments.Count Yorum</a></li>
-                            </ul>
-                        </div>
+
+
+<div class="heading-page header-text">
+    <section class="page-heading">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <div class="text-content">
+                        <h4>KATEGORİ</h4>
+                        @if (ViewBag.CategoryName != null)
+                        {
+                            <h2>@ViewBag.CategoryName</h2>
+                        }
                     </div>
                 </div>
-            }
-
+            </div>
         </div>
-    </div>
+    </section>
 </div>
 
-
-<section class="blog-posts">
+<section class="blog-posts grid-system">
     <div class="container">
         <div class="row">
             <div class="col-lg-8">
                 <div class="all-blog-posts">
                     <div class="row">
-
-                        @foreach (var item in Model.Take(3))
+                        @foreach (var item in Model)
                         {
-                            <div class="col-lg-12">
+                            <div class="col-lg-6">
                                 <div class="blog-post">
                                     <div class="blog-thumb">
-                                        <img src="@item.ImageUri" alt="">
+                                        <img src="@item.ThumbnailImageUri" alt="">
                                     </div>
                                     <div class="down-content">
                                         <span>@item.Category.Name</span>
@@ -57,21 +45,14 @@
                                             <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
                                             <li><a href="#">@item.Comments.Count Yorum</a></li>
                                         </ul>
-                                        <p> @item.ContentText.Substring(0, 300)...</p>
-
+                                        <p>@item.ContentText.Substring(0,200)...</p>
+                                        <div class="post-options">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         }
 
-
-
-                        <div class="col-lg-12">
-                            <div class="main-button">
-                                <a href="/Blog/AllBlog/">Tüm yazıları görüntüle</a>
-                            </div>
-                        </div>
-                        
 
                     </div>
                 </div>
@@ -85,16 +66,12 @@
                                     <input type="text" name="q" class="searchText" placeholder="type to search..." autocomplete="on">
                                 </form>
                             </div>
-                        </div> @*// Search *@
-                        <vc:recent-posts></vc:recent-posts> @*// Son yazılar*@
-                        <vc:category-list></vc:category-list> @* Kategori Listesi*@
+                        </div>
+                        <vc:recent-posts></vc:recent-posts>
+                        <vc:category-list></vc:category-list>
                     </div>
                 </div>
             </div>
         </div>
     </div>
 </section>
-
-
-
-

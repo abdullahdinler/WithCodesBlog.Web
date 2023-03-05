@@ -43,7 +43,7 @@ namespace BusinessLayer.Concrete
             _blogDal.Delete(entity);
         }
 
-        public List<Blog> GetBlogWithCategoryList()
+        public List<Blog>? GetBlogWithCategoryList()
         {
             return _blogDal.GetBlogList();
         }
@@ -56,6 +56,11 @@ namespace BusinessLayer.Concrete
         public Blog? GetBlogBySlug(string slug)
         {
             return _blogDal.GetBlog(x => x.Slug == slug);
+        }
+
+        public List<Blog>? BlogListByCategory(string categoryName)
+        {
+            return _blogDal.BlogWithCategoryList(x => x.Category != null && x.Category.Name == categoryName);
         }
     }
 }

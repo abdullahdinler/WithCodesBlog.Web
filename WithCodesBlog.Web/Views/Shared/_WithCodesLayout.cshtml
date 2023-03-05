@@ -19,8 +19,8 @@
     <link rel="stylesheet" href="/withcodes/assets/css/fontawesome.css">
     <link rel="stylesheet" href="/withcodes/assets/css/templatemo-stand-blog.css">
     <link rel="stylesheet" href="/withcodes/assets/css/owl.css">
-   
-    
+
+
 </head>
 
 <body>
@@ -56,9 +56,7 @@
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Blog" asp-action="AllBlog">Bloglar</a>
                         </li>
-                        <li class="nav-item">
-                            <a class="nav-link" href="post-details.html">Kategoriler</a>
-                        </li>
+                        <vc:menu-category-list></vc:menu-category-list>
                         <li class="nav-item">
                             <a class="nav-link" href="contact.html">İletişim</a>
                         </li>
@@ -67,6 +65,7 @@
             </div>
         </nav>
     </header>
+
 
     @RenderBody()
 

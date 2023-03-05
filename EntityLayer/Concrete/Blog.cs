@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace EntityLayer.Concrete
 {
-    public class Blog:BaseEntity
+    public class Blog : BaseEntity
     {
         public int CategoryId { get; set; }
         public int AppUserId { get; set; }
@@ -18,18 +18,26 @@ namespace EntityLayer.Concrete
         public DateTime CreateDate { get; set; }
         public bool Status { get; set; }
         [Column("Slug")]
+        private string? _slug;
+
         public string? Slug
         {
             get
             {
-                return Title.ToLower().Replace(" ", "-");
+                return _slug ?? Title.ToLower().Replace(" ", "-").Replace("ı", "i").Replace("ğ", "g").Replace("ç", "c")
+                    .Replace("ö", "o").Replace("ü", "u").Replace("ş", "s").Replace("$", "s");
+            }
+            set
+            {
+                _slug = value;
             }
         }
 
 
+
         public Category? Category { get; set; }
         public AppUser? AppUser { get; set; }
-        public virtual  ICollection<Comment>? Comments { get; set; }
+        public virtual ICollection<Comment>? Comments { get; set; }
 
 
     }

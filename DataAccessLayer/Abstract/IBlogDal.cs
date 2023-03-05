@@ -8,10 +8,12 @@ using EntityLayer.Concrete;
 
 namespace DataAccessLayer.Abstract
 {
-    public interface IBlogDal:IGenericRepository<Blog>
+    public interface IBlogDal : IGenericRepository<Blog>
     {
-        List<Blog> GetBlogList();
+        List<Blog>? GetBlogList();
         Blog? GetBlog(Expression<Func<Blog, bool>> filter);
-        
+        List<Blog>? BlogWithCategoryList(Expression<Func<Blog, bool>> filter);
+
+
     }
 }

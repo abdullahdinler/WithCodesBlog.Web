@@ -30,17 +30,18 @@
                         <div class="col-lg-12">
                             <div class="blog-post">
                                 <div class="blog-thumb">
-                                    <img src="@Model.ImageUri" alt="">
+                                    <img src="@Model.ImageUri" alt="@Model.Title">
                                 </div>
                                 <div class="down-content">
+                                    <span>@Model.Category.Name</span>
                                     <a><h4>@Model.Title</h4></a>
                                     <ul class="post-info">
-                                        <li><a href="#">@Model.AppUser.UserName*</a></li>
-                                        <li><a href="#">@Model.CreateDate.ToString("MM dd, yyyy")</a></li>
-                                        <li><a href="#">10 @Model.Category.Name</a></li>
+                                        <li><a href="#">@Model.AppUser.NameSurname</a></li>
+                                        <li><a href="#">@Model.CreateDate.ToString("dd MMM yyyy")</a></li>
+                                        <li><a href="#">@Model.Comments.Count Yorum</a></li>
                                     </ul>
                                     <p>
-                                        
+
                                         @Model.ContentText
 
                                     </p>

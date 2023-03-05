@@ -39,20 +39,16 @@ app.UseRouting();
 
 app.UseAuthorization();
 
-//app.UseEndpoints(endpoints =>
-//{
-//    endpoints.MapControllerRoute(
-//        name: "blog",
-//        pattern: "blog/{slug}/{id}",
-//        defaults: new { controller = "Blog", action = "Details" });
-//    endpoints.MapControllerRoute(
-//        name: "default",
-//        pattern: "{controller=Blog}/{action=Index}/{id?}");
-//});
+app.UseEndpoints(endpoints =>
+{
+    endpoints.MapControllerRoute(
+        name: "blog",
+        pattern: "blog/{slug}",
+        defaults: new { controller = "Blog", action = "Details" });
+    endpoints.MapControllerRoute(
+        name: "default",
+        pattern: "{controller=Blog}/{action=Index}/{id?}");
+});
 
-
-//app.MapControllerRoute(
-//    name: "default",
-//    pattern: "{controller=Home}/{action=Index}/{id?}");
 
 app.Run();

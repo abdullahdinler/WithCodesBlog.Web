@@ -3,11 +3,11 @@ using Microsoft.AspNetCore.Mvc;
 
 namespace WithCodesBlog.Web.UI.ViewComponents.CategoryViewComponent
 {
-    public class CategoryList : ViewComponent
+    public class MenuCategoryList : ViewComponent
     {
         private readonly ICategoryDal _category;
 
-        public CategoryList(ICategoryDal category)
+        public MenuCategoryList(ICategoryDal category)
         {
             _category = category;
         }

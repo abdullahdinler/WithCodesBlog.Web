@@ -28,7 +28,7 @@
             <div class="col-lg-8">
                 <div class="all-blog-posts">
                     <div class="row">
-
+                        @**@
                         @foreach (var item in Model)
                         {
                             <div class="col-lg-6">
@@ -37,12 +37,12 @@
                                         <img src="@item.ThumbnailImageUri" alt="">
                                     </div>
                                     <div class="down-content">
-                                        <span>Lifestyle</span>
-                                        <a href="/blog/details/@item.Id"><h4>@item.Title</h4></a>
+                                        <span>@item.Category.Name</span>
+                                        <a asp-controller="Blog" asp-action="Details" asp-route-slug="@item.Slug"><h4>@item.Title</h4></a>
                                         <ul class="post-info">
                                             <li><a href="#">@item.AppUser.NameSurname</a></li>
-                                            <li><a href="#">@item.CreateDate.ToString("MM dd, yyyy")</a></li>
-                                            <li><a href="#">@item.Category.Name</a></li>
+                                            <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
+                                            <li><a href="#">@item.Comments.Count Yorum</a></li>
                                         </ul>
                                         <p>@item.ContentText.Substring(0,200)...</p>
                                         <div class="post-options">

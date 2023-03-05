@@ -33,6 +33,7 @@
 
   <ItemGroup>
     <Folder Include="Pages\" />
+    <Folder Include="Views\Category\" />
   </ItemGroup>
 
 </Project>
