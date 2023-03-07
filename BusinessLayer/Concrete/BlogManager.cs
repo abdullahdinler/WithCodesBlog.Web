@@ -62,5 +62,15 @@ namespace BusinessLayer.Concrete
         {
             return _blogDal.BlogWithCategoryList(x => x.Category != null && x.Category.Name == categoryName);
         }
+
+        public List<Blog>? BlogListByAuthor(string authorName)
+        {
+            return _blogDal.BlogWithCategoryList(x => x.AppUser != null && x.AppUser.UserName == authorName);
+        }
+
+        public List<Hashtag>? BlogListByHashtag(string hashtagName)
+        {
+            return _blogDal.GetBlogWithHashtagList(x => x.Name == hashtagName);
+        }
     }
 }

@@ -22,19 +22,27 @@ namespace DataAccessLayer.EntityFramework
 
         public List<Blog>? GetBlogList()
         {
-            var values = _context.Blogs?.Include(x => x.Category).Include(x=>x.Comments).Include(x => x.AppUser).OrderByDescending(x => x.CreateDate).ToList();
+            var values = _context.Blogs?.Include(x => x.Category).Include(x=>x.Comments).Include(x=>x.Hashtags).Include(x => x.AppUser).OrderByDescending(x => x.CreateDate).ToList();
             return values;
         }
 
         public Blog? GetBlog(Expression<Func<Blog, bool>> filter)
         {
-            var values = _context.Blogs.Include(x => x.Category).Include(x=>x.Comments).Include(x => x.AppUser).FirstOrDefault(filter);
+            var values = _context.Blogs?.Include(x => x.Category).Include(x=>x.Comments).Include(x => x.Hashtags).Include(x => x.AppUser).FirstOrDefault(filter);
             return values;
         }
 
         public List<Blog>? BlogWithCategoryList(Expression<Func<Blog, bool>> filter)
         {
-            var values = _context.Blogs.Include(x => x.Category).Include(x => x.Comments).Include(x => x.AppUser).Where(filter).ToList();
+            var values = _context.Blogs?.Include(x => x.Category).Include(x => x.Comments).Include(x => x.Hashtags).Include(x => x.AppUser).Where(filter).ToList();
+            return values;
+
+        }
+
+        public List<Hashtag>? GetBlogWithHashtagList(Expression<Func<Hashtag, bool>> filter)
+        {
+            var values = _context.Hashtags.Include(x => x.Blog).Include(x => x.Blog.Category)
+                .Include(x => x.Blog.Comments).Include(x => x.Blog.AppUser).Where(filter).ToList();
             return values;
         }
     }

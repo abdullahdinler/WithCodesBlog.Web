@@ -3,6 +3,7 @@ using DataAccessLayer.Concrete;
 using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.RazorPages;
 using X.PagedList;
 
 namespace WithCodesBlog.Web.UI.Controllers
@@ -10,7 +11,8 @@ namespace WithCodesBlog.Web.UI.Controllers
     public class BlogController : Controller
     {
         private readonly BlogManager _blog;
-       
+        
+
 
         public BlogController(BlogManager blog)
         {
@@ -28,7 +30,7 @@ namespace WithCodesBlog.Web.UI.Controllers
         public async Task<IActionResult> AllBlog(int page = 1)
         {
 
-            var values = await _blog.GetBlogWithCategoryList().ToPagedListAsync(page, 3);
+            var values = await _blog.GetBlogWithCategoryList().ToPagedListAsync(page, 10);
             return View(values);
         }
 
@@ -44,13 +46,38 @@ namespace WithCodesBlog.Web.UI.Controllers
             return NotFound();
 
         }
-        [HttpGet("Karegori/{categoryName}")]
-        public IActionResult BlogByCategoryList(string categoryName)
+        [HttpGet("Kategori/{categoryName}")]
+        public async Task<IActionResult> BlogByCategoryList(string categoryName, int page = 1)
         {
-            var model = _blog.BlogListByCategory(categoryName);
+            var model = await _blog.BlogListByCategory(categoryName).ToPagedListAsync(page, 10);
             if (model != null)
             {
                 ViewBag.CategoryName = categoryName;
+                return View(model);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("Yazar/{authorName}")]
+        public async Task<IActionResult> BlogByAuthorList(string authorName, int page = 1)
+        {
+            var model = await _blog.BlogListByAuthor(authorName).ToPagedListAsync(page, 10);
+            if (model != null)
+            {
+                ViewBag.AuthorName = authorName;
+                return View(model);
+            }
+            return NotFound();
+        }
+
+        [HttpGet("Hashtag/{hashtagName}")]
+        public async Task<IActionResult> BlogByHashtagList(string hashtagName, int page = 1)
+        {
+          
+            var model = await _blog.BlogListByHashtag(hashtagName).ToPagedListAsync(page, 10);
+            if (model != null)
+            {
+                ViewBag.hashtagName = hashtagName;
                 return View(model);
             }
             return NotFound();

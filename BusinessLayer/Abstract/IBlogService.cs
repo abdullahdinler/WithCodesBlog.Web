@@ -13,5 +13,7 @@ namespace BusinessLayer.Abstract
         Blog? GetBlogById(int id);
         Blog? GetBlogBySlug(string slug);
         List<Blog>? BlogListByCategory(string categoryName);
+        List<Blog>? BlogListByAuthor(string authorName);
+        List<Hashtag>? BlogListByHashtag(string hashtagName);
     }
 }

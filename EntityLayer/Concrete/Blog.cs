@@ -38,7 +38,7 @@ namespace EntityLayer.Concrete
         public Category? Category { get; set; }
         public AppUser? AppUser { get; set; }
         public virtual ICollection<Comment>? Comments { get; set; }
-
+        public virtual ICollection<Hashtag>? Hashtags { get; set; }
 
     }
 }

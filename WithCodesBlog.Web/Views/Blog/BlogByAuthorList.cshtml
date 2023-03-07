@@ -1,7 +1,6 @@
-﻿
-@model IPagedList<Blog>
+﻿@model IPagedList<Blog>
 @{
-    ViewData["Title"] = "Bloglar";
+    ViewData["Title"] = ViewBag.AuthorName;
     Layout = "~/Views/Shared/_WithCodesLayout.cshtml";
 }
 
@@ -12,8 +11,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-content">
-                        <h4>Bloglar</h4>
-                        <h2>Tüm bog yazıları</h2>
+                        <h4>YAZAR</h4>
+                        @if (ViewBag.AuthorName != null)
+                        {
+                            <h2>@ViewBag.AuthorName</h2>
+                        }
                     </div>
                 </div>
             </div>
@@ -27,7 +29,6 @@
             <div class="col-lg-8">
                 <div class="all-blog-posts">
                     <div class="row">
-                        @**@
                         @foreach (var item in Model)
                         {
                             <div class="col-lg-6">
@@ -43,7 +44,7 @@
                                             <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
                                             <li><a href="#">@item.Comments.Count Yorum</a></li>
                                         </ul>
-                                        <p>@item.ContentText.Substring(0,200)...</p>
+                                        <p>@item.ContentText.Substring(0, 200)...</p>
                                         <div class="post-options">
                                             <div class="row">
                                                 <div class="col-lg-12">
@@ -60,16 +61,10 @@
                                     </div>
                                 </div>
                             </div>
-                           
-
                         }
 
-
-
-
-
                         <div class="col-lg-12">
-                            <div class="align-self-center">@Html.PagedListPager((IPagedList)Model, page => Url.Action("AllBlog", new {page}))  </div>
+                            <div class="align-self-center">@Html.PagedListPager((IPagedList ) Model, page => Url.Action("BlogByAuthorList", new {page})) </div>
 
                         </div>
                     </div>
@@ -95,3 +90,4 @@
         </div>
     </div>
 </section>
+

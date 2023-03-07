@@ -1,10 +1,8 @@
-﻿
-@model IPagedList<Blog>
+﻿@model IPagedList<Hashtag>
 @{
-    ViewData["Title"] = "Bloglar";
+    ViewData["Title"] = ViewBag.hashtagName;
     Layout = "~/Views/Shared/_WithCodesLayout.cshtml";
 }
-
 
 <div class="heading-page header-text">
     <section class="page-heading">
@@ -12,8 +10,11 @@
             <div class="row">
                 <div class="col-lg-12">
                     <div class="text-content">
-                        <h4>Bloglar</h4>
-                        <h2>Tüm bog yazıları</h2>
+                        <h4>HASHTAG</h4>
+                        @if (ViewBag.hashtagName != null)
+                        {
+                            <h2>@ViewBag.hashtagName</h2>
+                        }
                     </div>
                 </div>
             </div>
@@ -27,29 +28,28 @@
             <div class="col-lg-8">
                 <div class="all-blog-posts">
                     <div class="row">
-                        @**@
                         @foreach (var item in Model)
                         {
                             <div class="col-lg-6">
                                 <div class="blog-post">
                                     <div class="blog-thumb">
-                                        <img src="@item.ThumbnailImageUri" alt="@item.Title">
+                                        <img src="@item.Blog.ThumbnailImageUri" alt="@item.Blog.Title">
                                     </div>
                                     <div class="down-content">
-                                        <span>@item.Category.Name</span>
-                                        <a asp-controller="Blog" asp-action="Details" asp-route-slug="@item.Slug"><h4>@item.Title</h4></a>
+                                        <span>@item.Blog.Category.Name</span>
+                                        <a asp-controller="Blog" asp-action="Details" asp-route-slug="@item.Blog.Slug"><h4>@item.Blog.Title</h4></a>
                                         <ul class="post-info">
-                                            <li><a asp-controller="Blog" asp-action="BlogByAuthorList" asp-route-authorName="@item.AppUser.UserName">@item.AppUser.NameSurname</a></li>
-                                            <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
-                                            <li><a href="#">@item.Comments.Count Yorum</a></li>
+                                            <li><a asp-controller="Blog" asp-action="BlogByAuthorList" asp-route-authorName="@item.Blog.AppUser.UserName">@item.Blog.AppUser.NameSurname</a></li>
+                                            <li><a href="#">@item.Blog.CreateDate.ToString("dd MMM yyyy")</a></li>
+                                            <li><a href="#">@item.Blog.Comments.Count Yorum</a></li>
                                         </ul>
-                                        <p>@item.ContentText.Substring(0,200)...</p>
+                                        <p>@item.Blog.ContentText.Substring(0, 200)...</p>
                                         <div class="post-options">
                                             <div class="row">
                                                 <div class="col-lg-12">
                                                     <ul class="post-tags">
                                                         <li><i class="fa fa-tags"></i></li>
-                                                        @foreach (var hashtag in item.Hashtags)
+                                                        @foreach (var hashtag in Model)
                                                         {
                                                             <li><a asp-controller="Blog" asp-action="BlogByHashtagList" asp-route-hashtagName="@hashtag.Name">@hashtag.Name</a></li>
                                                         }
@@ -60,16 +60,11 @@
                                     </div>
                                 </div>
                             </div>
-                           
-
+                          
                         }
 
-
-
-
-
                         <div class="col-lg-12">
-                            <div class="align-self-center">@Html.PagedListPager((IPagedList)Model, page => Url.Action("AllBlog", new {page}))  </div>
+                            <div class="align-self-center">@Html.PagedListPager((IPagedList ) Model, page => Url.Action("BlogByHashtagList", new {page})) </div>
 
                         </div>
                     </div>
@@ -95,3 +90,4 @@
         </div>
     </div>
 </section>
+

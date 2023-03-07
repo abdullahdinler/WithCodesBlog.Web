@@ -25,6 +25,7 @@ namespace DataAccessLayer.Concrete
         public DbSet<Contact>? Contacts { get; set; }
         public DbSet<Notification>? Notifications { get; set; }
         public DbSet<SocialMedia>? SocialMediae { get; set; }
+        public DbSet<Hashtag>? Hashtags { get; set; }
 
 
     }

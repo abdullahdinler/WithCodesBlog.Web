@@ -1,6 +1,6 @@
 ﻿@model Blog
 @{
-    ViewData["Title"] = "Details";
+    ViewData["Title"] = Model.Title;
     Layout = "~/Views/Shared/_WithCodesLayout.cshtml";
 }
 
@@ -36,7 +36,7 @@
                                     <span>@Model.Category.Name</span>
                                     <a><h4>@Model.Title</h4></a>
                                     <ul class="post-info">
-                                        <li><a href="#">@Model.AppUser.NameSurname</a></li>
+                                        <li><a asp-controller="Blog" asp-action="BlogByAuthorList" asp-route-authorName="@Model.AppUser.UserName">@Model.AppUser.NameSurname</a></li>
                                         <li><a href="#">@Model.CreateDate.ToString("dd MMM yyyy")</a></li>
                                         <li><a href="#">@Model.Comments.Count Yorum</a></li>
                                     </ul>
@@ -94,7 +94,7 @@
                                     </ul>
                                 </div>
                             </div>
-                        </div>
+                        </div> @*Yorum Listesi*@
                         <div class="col-lg-12">
                             <div class="sidebar-item submit-comment">
                                 <div class="sidebar-heading">
@@ -148,6 +148,8 @@
                         </div>
                        <vc:recent-posts></vc:recent-posts>
                         <vc:category-list></vc:category-list>
+                        <vc:author-list></vc:author-list>
+                        <vc:hashtag-list></vc:hashtag-list>
                     </div>
                 </div>
             </div>

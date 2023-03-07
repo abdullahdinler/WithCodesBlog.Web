@@ -1,5 +1,5 @@
 ﻿<!DOCTYPE html>
-<html lang="en">
+<html lang="tr">
 
 <head>
 
@@ -9,7 +9,7 @@
     <meta name="author" content="">
     <link href="https://fonts.googleapis.com/css?family=Roboto:100,100i,300,300i,400,400i,500,500i,700,700i,900,900i&display=swap" rel="stylesheet">
 
-    <title>Stand Blog - Contact Page</title>
+    <title>@ViewData["Title"]</title>
 
     <!-- Bootstrap core CSS -->
     <link href="/withcodes/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -19,6 +19,7 @@
     <link rel="stylesheet" href="/withcodes/assets/css/fontawesome.css">
     <link rel="stylesheet" href="/withcodes/assets/css/templatemo-stand-blog.css">
     <link rel="stylesheet" href="/withcodes/assets/css/owl.css">
+    <link href="\css\pagedlist.css" rel="stylesheet" />
 
 
 </head>
@@ -51,14 +52,14 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="about.html">Hakkımızda</a>
+                            <a class="nav-link" asp-controller="About" asp-action="Index">Hakkımızda</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" asp-controller="Blog" asp-action="AllBlog">Bloglar</a>
                         </li>
                         <vc:menu-category-list></vc:menu-category-list>
                         <li class="nav-item">
-                            <a class="nav-link" href="contact.html">İletişim</a>
+                            <a class="nav-link" asp-controller="Contact" asp-action="Index">İletişim</a>
                         </li>
                     </ul>
                 </div>

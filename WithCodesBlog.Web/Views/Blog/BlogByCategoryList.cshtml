@@ -1,6 +1,6 @@
-﻿@model List<Blog>
+﻿@model IPagedList<Blog>
 @{
-    ViewData["Title"] = "BlogByCategoryList";
+    ViewData["Title"] = ViewBag.CategoryName;
     Layout = "~/Views/Shared/_WithCodesLayout.cshtml";
 }
 
@@ -35,25 +35,40 @@
                             <div class="col-lg-6">
                                 <div class="blog-post">
                                     <div class="blog-thumb">
-                                        <img src="@item.ThumbnailImageUri" alt="">
+                                        <img src="@item.ThumbnailImageUri" alt="@item.Title">
                                     </div>
                                     <div class="down-content">
                                         <span>@item.Category.Name</span>
                                         <a asp-controller="Blog" asp-action="Details" asp-route-slug="@item.Slug"><h4>@item.Title</h4></a>
                                         <ul class="post-info">
-                                            <li><a href="#">@item.AppUser.NameSurname</a></li>
+                                            <li><a asp-controller="Blog" asp-action="BlogByAuthorList" asp-route-authorName="@item.AppUser.UserName">@item.AppUser.NameSurname</a></li>
                                             <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
                                             <li><a href="#">@item.Comments.Count Yorum</a></li>
                                         </ul>
                                         <p>@item.ContentText.Substring(0,200)...</p>
                                         <div class="post-options">
+                                            <div class="row">
+                                                <div class="col-lg-12">
+                                                    <ul class="post-tags">
+                                                        <li><i class="fa fa-tags"></i></li>
+                                                        @foreach (var hashtag in item.Hashtags)
+                                                        {
+                                                            <li><a asp-controller="Blog" asp-action="BlogByHashtagList" asp-route-hashtagName="@hashtag.Name">@hashtag.Name</a></li>
+                                                        }
+                                                    </ul>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>
+                           
                         }
 
+                        <div class="col-lg-12">
+                            <div class="align-self-center">@Html.PagedListPager((IPagedList ) Model, page => Url.Action("BlogByAuthorList", new {page})) </div>
 
+                        </div>
                     </div>
                 </div>
             </div>
@@ -69,6 +84,8 @@
                         </div>
                         <vc:recent-posts></vc:recent-posts>
                         <vc:category-list></vc:category-list>
+                        <vc:author-list></vc:author-list>
+                        <vc:hashtag-list></vc:hashtag-list>
                     </div>
                 </div>
             </div>
