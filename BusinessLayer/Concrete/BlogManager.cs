@@ -48,6 +48,11 @@ namespace BusinessLayer.Concrete
             return _blogDal.GetBlogList();
         }
 
+        public List<Blog>? Search(string search)
+        {
+            return _blogDal.BlogWithCategoryList(x => x.Title != null && x.Title.Contains(search));
+        }
+
         public Blog? GetBlogById(int id)
         {
             return _blogDal.GetBlog(x => x.Id == id);

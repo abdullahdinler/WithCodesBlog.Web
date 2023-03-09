@@ -42,5 +42,10 @@ namespace BusinessLayer.Concrete
         {
             _commentDal.Delete(entity);
         }
+
+        public List<Comment>? GetAllList(string slug)
+        {
+            return _commentDal.GetAll(x => x.Blog.Slug == slug).Where(x => x.Status == true).ToList();
+        }
     }
 }

@@ -3,11 +3,13 @@ using BusinessLayer.Concrete;
 using BusinessLayer.ValidationRules;
 using EntityLayer.Concrete;
 using FluentValidation.Results;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using WithCodesBlog.Web.UI.ViewModels;
 
 namespace WithCodesBlog.Web.UI.Controllers
 {
+    [AllowAnonymous]
     public class ContactController : Controller
     {
         private readonly ContactManager _contactManager;

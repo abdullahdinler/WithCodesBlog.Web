@@ -1,8 +1,10 @@
 ﻿using BusinessLayer.Concrete;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
 namespace WithCodesBlog.Web.UI.Controllers
 {
+    [AllowAnonymous]
     public class AboutController : Controller
     {
         private readonly AboutManager _aboutManager;

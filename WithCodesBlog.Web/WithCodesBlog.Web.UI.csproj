@@ -33,8 +33,22 @@
   </ItemGroup>
 
   <ItemGroup>
+    <Folder Include="Areas\Admin\Data\" />
+    <Folder Include="Areas\Admin\Models\" />
     <Folder Include="Pages\" />
     <Folder Include="Views\Category\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="wwwroot\adminpanel\.github\codeql\codeql-config.yml" />
+    <None Include="wwwroot\adminpanel\.github\CONTRIBUTING.md" />
+    <None Include="wwwroot\adminpanel\.github\dependabot.yml" />
+    <None Include="wwwroot\adminpanel\.github\ISSUE_TEMPLATE\bug-report-for-adminlte-v3.1-x.md" />
+    <None Include="wwwroot\adminpanel\.github\ISSUE_TEMPLATE\feature-request-for-adminlte-v4-x.md" />
+    <None Include="wwwroot\adminpanel\.github\workflows\ci.yml" />
+    <None Include="wwwroot\adminpanel\.github\workflows\codeql.yml" />
+    <None Include="wwwroot\adminpanel\.github\workflows\docs.yml" />
+    <None Include="wwwroot\adminpanel\.github\workflows\lint.yml" />
   </ItemGroup>
 
 </Project>

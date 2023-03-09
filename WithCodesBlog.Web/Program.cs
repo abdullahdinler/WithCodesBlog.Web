@@ -42,6 +42,10 @@ builder.Services.AddScoped<IHastagService, HashtagManager>();
 builder.Services.AddScoped<IHashtagDal, EfHashtagDal>();
 builder.Services.AddScoped<HashtagManager>();
 
+builder.Services.AddScoped<ICommentService, CommentManager>();
+builder.Services.AddScoped<ICommentDal, EfCommentDal>();
+builder.Services.AddScoped<CommentManager>();
+builder.Services.AddScoped<Comment>();
 
 
 // Fluent Validation controle ekledik 
@@ -71,12 +75,18 @@ app.UseAuthorization();
 app.UseEndpoints(endpoints =>
 {
     endpoints.MapControllerRoute(
+        name: "areas",
+        pattern: "{area:exists}/{controller=Home}/{action=Index}/{id?}");
+
+    endpoints.MapControllerRoute(
         name: "blog",
         pattern: "blog/{slug}",
         defaults: new { controller = "Blog", action = "Details" });
+
     endpoints.MapControllerRoute(
         name: "default",
         pattern: "{controller=Blog}/{action=Index}/{id?}");
+
 });
 
 

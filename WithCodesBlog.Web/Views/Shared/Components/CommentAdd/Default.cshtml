@@ -1,0 +1,44 @@
+﻿@model WithCodesBlog.Web.UI.ViewModels.CommentViewModel
+<div class="col-lg-12">
+    <div class="sidebar-item submit-comment">
+        <div class="sidebar-heading">
+            <h2>Yorum Yap</h2>
+        </div>
+        @if (TempData["Alert"] != null)
+        {
+        <div class="alert alert-success">@TempData["Alert"]</div>
+        }
+        <div class="content">
+            <form asp-controller="Comment" asp-action="CommentAdd" method="post">
+                <div class="row">
+                    <input type="hidden" asp-for="BlogId" value="@TempData["id"]">
+                    <input type="hidden" asp-for="ReturnUrl" value="@Context.Request.Path" />
+                    <div class="text-danger" asp-validation-summary="All"></div>
+                    <div class="col-md-6 col-sm-12">
+                        <fieldset>
+                            <input asp-for="UserName" type="text"  placeholder="Adınız Soyadınız" required="">
+                            <span class="text-danger" asp-validation-for="UserName"></span>
+                        </fieldset>
+                    </div>
+                    <div class="col-md-6 col-sm-12">
+                        <fieldset>
+                            <input asp-for="UserEmail" type="text"  placeholder="Email" required="">
+                            <span class="text-danger" asp-validation-for="UserEmail"></span>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <textarea asp-for="CommentText" rows="6" placeholder="Yorumunuz" required=""></textarea>
+                            <span class="text-danger" asp-validation-for="CommentText"></span>
+                        </fieldset>
+                    </div>
+                    <div class="col-lg-12">
+                        <fieldset>
+                            <button type="submit" id="form-submit" class="main-button">Yorumu Yap</button>
+                        </fieldset>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
