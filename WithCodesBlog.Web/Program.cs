@@ -8,6 +8,9 @@ using DataAccessLayer.EntityFramework;
 using EntityLayer.Concrete;
 using FluentValidation;
 using FluentValidation.AspNetCore;
+using Microsoft.AspNetCore.Authentication.Cookies;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Mvc.Authorization;
 using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
@@ -17,6 +20,36 @@ builder.Services.AddControllersWithViews();
 
 builder.Services.AddDbContext<WithCodesContext>(opt =>
     opt.UseSqlServer(builder.Configuration.GetConnectionString("MsSql")));
+
+// Identity iþlemi için gereken iþlemler yapýldý.
+builder.Services.AddDbContext<WithCodesContext>();
+builder.Services.AddIdentity<AppUser, AppRole>().AddEntityFrameworkStores<WithCodesContext>();
+
+
+// Global filtreleme iþlemi yaptýk.
+builder.Services.AddMvc(options =>
+{
+    var policy = new AuthorizationPolicyBuilder()
+        .RequireAuthenticatedUser()
+        .Build();
+    options.Filters.Add(new AuthorizeFilter(policy));
+});
+
+builder.Services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(x =>
+{
+    x.LoginPath = "/Error403/";
+});
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
+    options.ExpireTimeSpan = TimeSpan.FromMinutes(5);
+    options.LoginPath = "/Error403/";
+    options.SlidingExpiration = true;
+    options.AccessDeniedPath = "/Error403/";
+});
+
 
 builder.Services.AddScoped<IBlogService, BlogManager>();
 builder.Services.AddScoped<IBlogDal, EfBlogDal>();
@@ -60,16 +93,21 @@ var app = builder.Build();
 // Configure the HTTP request pipeline.
 if (!app.Environment.IsDevelopment())
 {
-    app.UseExceptionHandler("/Home/Error");
+    app.UseExceptionHandler("/Error404/");
     // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
+
+// Aranan sayfa yoksa yonlendirelecek sayfa.
+app.UseStatusCodePagesWithReExecute("/Error404/", "?code={0}");
 
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
 app.UseRouting();
 
+
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.UseEndpoints(endpoints =>

@@ -1,0 +1,60 @@
+﻿@model WithCodesBlog.Web.UI.Areas.Admin.ViewModels.LogInViewModel
+@{
+    Layout = null;
+}
+
+
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>With Codes</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/ionicons/2.0.1/css/ionicons.min.css">
+    <link rel="stylesheet" href="/css/login.css">
+</head>
+
+<body>
+    <div class="login-dark">
+        <form asp-area="Admin" asp-controller="Login" asp-action="Index" method="post">
+            <div class="text-danger" lang="tr" asp-validation-summary="ModelOnly"></div>
+            <div class="illustration"><i class="icon ion-ios-locked-outline"></i></div>
+            <div class="form-group">
+                <input class="form-control" asp-for="UserName" placeholder="Kullanıcı Adı">
+                <span class="text-danger" asp-validation-for="UserName"></span>
+            </div>
+            <div class="form-group">
+                <input class="form-control" type="password" asp-for="Password" placeholder="Şifre">
+                <span class="text-danger" asp-validation-for="Password"></span>
+            </div>
+            <div class="form-group"><button class="btn btn-primary btn-block" type="submit">Giriş Yap</button></div>
+        </form>
+    </div>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.1.3/js/bootstrap.bundle.min.js"></script>
+    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+</body>
+
+
+<script>
+    var errorMessage = '@TempData["ErrorMessage"]';
+    if (errorMessage) {
+        Swal.fire({
+            title: 'Hata!',
+            icon: 'error',
+            text: errorMessage
+        });
+    }
+</script>
+
+</html>
+
+
+
+
+

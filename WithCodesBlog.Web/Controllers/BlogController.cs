@@ -42,6 +42,21 @@ namespace WithCodesBlog.Web.UI.Controllers
             return View(values);
         }
 
+        [Route("Arama/")]
+        public async Task<IActionResult> Search(string search, int? page)
+        {
+            int _page = page ?? 1;
+            string _search = search ?? "";
+            if (_search != null)
+            {
+                TempData["Word"] = _search;
+                var result = await _blog.Search(_search).ToPagedListAsync(_page, 10);
+                return View(result);
+            }
+            var values = await _blog.GetBlogWithCategoryList().ToPagedListAsync(_page, 10);
+            return View(values);
+        }
+
 
         [HttpGet("{slug}")]
         public IActionResult Details(string slug)
