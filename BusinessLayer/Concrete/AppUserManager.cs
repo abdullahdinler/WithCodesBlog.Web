@@ -15,7 +15,7 @@ namespace BusinessLayer.Concrete
 
         public List<AppUser>? GetAllList()
         {
-            return _appUser.GetAll();
+            return _appUser.GetAll(x=>x.Blogs!.Count > 0);
         }
 
         public AppUser? Get(int id)
@@ -36,6 +36,11 @@ namespace BusinessLayer.Concrete
         public void Delete(AppUser entity)
         {
             _appUser.Delete(entity);
+        }
+
+        public List<AppUser>? Search(string search)
+        {
+            return _appUser.GetAll(x => x.NameSurname != null && x.NameSurname.Contains(search));
         }
     }
 }

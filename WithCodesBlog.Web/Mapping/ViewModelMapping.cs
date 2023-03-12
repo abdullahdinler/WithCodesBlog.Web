@@ -12,6 +12,7 @@ namespace WithCodesBlog.Web.UI.Mapping
             CreateMap<Contact, ContactViewModel>().ReverseMap();
             CreateMap<Comment, CommentViewModel>().ReverseMap();
             CreateMap<AppUser, LogInViewModel>().ReverseMap();
+            CreateMap<AppUser, AppUserViewModel>().ReverseMap();
         }
     }
 }
