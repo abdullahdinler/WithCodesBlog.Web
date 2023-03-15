@@ -1,0 +1,100 @@
+﻿@model IPagedList<Category>
+
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    string color = "";
+    string status = "";
+
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Katgeori Listesi</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Kategori İşlemleri</a></li>
+                    <li class="breadcrumb-item active">Katgeori Listesi</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
+
+                        <div class="card-tools">
+                            <div class="align-self-center">@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}))  </div>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Kategori Adı</th>
+                                    <th class="text-center">Blog Sayısı</th>
+                                    <th>Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    @if (@item.Status == true)
+                                    {
+                                        status = "Aktif";
+                                        color = "success";
+                                    }
+                                    else
+                                    {
+                                        color = "danger";
+                                        status = "Pasif";
+                                    }
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Name</td>
+
+                                        <td class="text-center">
+                                            <span class="badge bg-@color">@item.Blogs.Count</span>
+                                        </td>
+                                        <td><a asp-area="Admin" asp-controller="Category" asp-action="Satatus" asp-route-id="@item.Id" class="btn btn-outline-@color">@status</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+@section Scripts
+    {
+
+    <script>
+        var startValue = "@((string)TempData["Durum"])";
+        if (startValue != null && startValue != "") {
+            swal.fire("", "Kategori başarılı bir şekilde oluşturuldu.", "success");
+        }
+    </script>
+
+}

@@ -1,0 +1,147 @@
+﻿@*@model Category
+@{
+    ViewData["Title"] = "NewCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yeni Kategori Ekle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Kategori İşlemleri</a></li>
+                    <li class="breadcrumb-item active">Yeni Kategori Ekle</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <p class="card-description">  </p>
+            <form asp-controller="Category" asp-action="NewCategory" class="forms-sample" method="post">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Kategori Adı</label>
+                        <input asp-for="Name" class="form-control" placeholder="Kategori Adı">
+                        <span class="text-danger" asp-validation-for="Name"></span>
+                    </div>
+
+
+                    <div class="form-group col-md-6">
+                        <label class="form-label">Kategori Durumu</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" asp-for="Status" class="custom-control-input" id="customSwitch">
+                            <label class="custom-control-label" for="customSwitch">Aktif Edilsin Mi?</label>
+                        </div>
+                    </div>
+                </div>
+                <button type="submit" class="btn btn-outline-success mr-2">Kategori Ekle</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        var errorMessage = @TempData["Durum"]?.ToString();
+        if (errorMessage) {
+            Swal.fire({
+                title: 'Hata!',
+                icon: 'error',
+                text: errorMessage
+            });
+        }
+    </script>
+}*@
+
+
+@model Category
+@{
+    ViewData["Title"] = "NewCategory";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yeni Kategori Ekle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Kategori İşlemleri</a></li>
+                    <li class="breadcrumb-item active">Yeni Kategori Ekle</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<div class="row">
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form asp-controller="Category" asp-action="NewCategory" class="forms-sample" method="post">
+                    <div class="form-group">
+                        <label for="name">Kategori Adı</label>
+                        <div class="input-group">
+                            <input type="text" asp-for="Name" class="form-control" id="name" placeholder="Kategori Adı" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-transparent">
+                                    <i class="fa fa-tag text-primary"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Name" class="text-danger"></span>
+                    </div>
+                    <div class="form-group">
+                        <label class="form-label">Kategori Durumu</label>
+                        <div class="custom-control custom-switch">
+                            <input type="checkbox" asp-for="Status" class="custom-control-input" id="customSwitch">
+                            <label class="custom-control-label" for="customSwitch">Aktif Edilsin Mi?</label>
+                        </div>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mr-2">Kategori Ekle</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+    <script>
+        var errorMessage = @TempData["Durum"]?.ToString();
+        if (errorMessage) {
+            Swal.fire({
+                title: 'Hata!',
+                icon: 'error',
+                text: errorMessage
+            });
+        }
+    </script>
+}
+

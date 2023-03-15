@@ -80,11 +80,26 @@ builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 builder.Services.AddScoped<CommentManager>();
 builder.Services.AddScoped<Comment>();
 
+builder.Services.AddScoped<ICategoryService, CategoryManager>();
+builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
+builder.Services.AddScoped<CategoryManager>();
+
+
+
+
 
 // Fluent Validation controle ekledik 
 builder.Services.AddControllers()
     .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<ContactValidator>());
 builder.Services.AddScoped<IValidator<Contact>, ContactValidator>();
+
+// Fluent Validation controle ekledik 
+builder.Services.AddControllers()
+    .AddFluentValidation(fv => fv.RegisterValidatorsFromAssemblyContaining<CategoryValidator>());
+builder.Services.AddScoped<IValidator<Category>, CategoryValidator>();
+
+
+
 
 // AutoMapper kullana bilmek icin containera automappere ekledik.
 builder.Services.AddAutoMapper(Assembly.GetExecutingAssembly());

@@ -30,34 +30,54 @@
             <p class="card-description">  </p>
             <form asp-controller="Author" asp-action="NewAuthor" class="forms-sample" method="post" enctype="multipart/form-data">
                 <div class="text-danger" asp-validation-summary="ModelOnly"></div>
-                <div class="form-group">
-                    <label>Kullanıcı Adı</label>
-                    <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı">
-                    <span class="text-danger" asp-validation-for="UserName"></span>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Kullanıcı Adı</label>
+                        <input asp-for="UserName" class="form-control" placeholder="Kullanıcı Adı">
+                        <span class="text-danger" asp-validation-for="UserName"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>İsim Soyisim</label>
+                        <input asp-for="NameSurname" class="form-control" placeholder="İsim Soyisim">
+                        <span class="text-danger" asp-validation-for="NameSurname"></span>
+                    </div>
+
+                </div>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <label>Email</label>
+                        <input asp-for="Email" class="form-control" id="Email" placeholder="Emai">
+                        <span class="text-danger" asp-validation-for="Email"></span>
+                    </div>
+                    <div class="form-group col-md-6">
+                        <label for="PasswordHash">Şifre</label>
+                        <input asp-for="PasswordHash" class="form-control" id="PasswordHash" placeholder="Şİfre">
+                        <span class="text-danger" asp-validation-for="PasswordHash"></span>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>İsim Soyisim</label>
-                    <input asp-for="NameSurname" class="form-control" placeholder="İsim Soyisim">
-                    <span class="text-danger" asp-validation-for="NameSurname"></span>
+                <div class="form-row">
+                    <div class="form-group col-md-6">
+                        <div class="custom-file">
+                            <input type="file" asp-for="ImageUri" class="custom-file-input" id="ImageUri">
+                            <label class="custom-file-label" for="ImageUri">Resim Seç</label>
+                        </div>
+                        <span class="text-danger" asp-validation-for="ImageUri"></span>
+                    </div>
+
+                    <div class="form-group col-md-6">
+                        <label>Rol</label>
+                        <select asp-for="IsAdmin" class="form-control">
+                            <option value="">Seçiniz</option>
+                            @foreach (var role in ViewBag.Roles)
+                            {
+                                <option value="@role.Name">@role.Name</option>
+                            }
+                        </select>
+                    </div>
                 </div>
 
-                <div class="form-group">
-                    <label>Email</label>
-                    <input asp-for="Email" class="form-control" id="exampleInputEmail2" placeholder="Emai">
-                    <span class="text-danger" asp-validation-for="Email"></span>
-                </div>
-                <div class="form-group">
-                    <label for="exampleInputEmail3">Şifre</label>
-                    <input asp-for="PasswordHash" class="form-control" id="exampleInputEmail3" placeholder="Şİfre">
-                    <span class="text-danger" asp-validation-for="PasswordHash"></span>
-                </div>
-
-                <div class="form-group">
-                    <label for="Image">Yazar Görsel</label>
-                    <input type="file" asp-for="ImageUri" class="form-control-file" id="Image">
-                    <span class="text-danger" asp-validation-for="ImageUri"></span>
-                </div>
                 <button type="submit" class="btn btn-outline-success mr-2">Yazarı Ekle</button>
             </form>
         </div>

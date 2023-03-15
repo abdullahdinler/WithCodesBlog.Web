@@ -18,6 +18,7 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminpanel/dist/css/adminlte.min.css">
     <link href="~/css/pagedlist.css" rel="stylesheet" />
+
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -175,7 +176,7 @@
                         <img src="/adminpanel/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
                     </div>
                     <div class="info">
-                        <a href="#" class="d-block">Admin İsim</a>
+                        <a href="#" class="d-block">@User.Identity.Name</a>
                     </div>
                 </div>
 
@@ -197,8 +198,8 @@
                         <!-- Add icons to the links using the .nav-icon class
                              with font-awesome or any other icon font library -->
 
-                        <li class="nav-item menu-open">
-                            <a href="#" class="nav-link active">
+                        <li class="nav-item">
+                            <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-tachometer-alt"></i>
                                 <p>
                                     Gösterge Paneli
@@ -229,8 +230,24 @@
                                 <i class="nav-icon fas fa-folder"></i>
                                 <p>
                                     Kategori İşlemleri
+                                    <i class="fas fa-angle-left right"></i>
                                 </p>
                             </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/Category/" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Kategori Listesi</p>
+
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Admin/Category/NewCategory" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Yeni Kategori Ekle</p>
+                                    </a>
+                                </li>
+                            </ul>
                         </li>
 
                         <li class="nav-item">
@@ -240,6 +257,7 @@
                                     Hashtag İşlemleri
                                 </p>
                             </a>
+
                         </li>
 
                         <li class="nav-item">
@@ -258,7 +276,7 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="" class="nav-link">
+                                    <a href="/Admin/Author/NewAuthor" class="nav-link">
                                         <i class="far fa-circle nav-icon"></i>
                                         <p>Yeni Yazar Ekle</p>
                                     </a>
@@ -374,7 +392,8 @@
     <script src="/adminpanel/plugins/jquery-mapael/maps/usa_states.min.js"></script>
     <!-- ChartJS -->
     <script src="/adminpanel/plugins/chart.js/Chart.min.js"></script>
-
+    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/adminpanel/dist/js/pages/dashboard2.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>

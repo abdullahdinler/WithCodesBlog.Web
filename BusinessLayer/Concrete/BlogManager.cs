@@ -45,12 +45,12 @@ namespace BusinessLayer.Concrete
 
         public List<Blog>? GetBlogWithCategoryList()
         {
-            return _blogDal.GetBlogList();
+            return _blogDal.GetBlogList(  x=>x.Status == true && x.Category.Status == true);
         }
 
         public List<Blog>? Search(string search)
         {
-            return _blogDal.BlogWithCategoryList(x => x.Title != null && x.Title.Contains(search));
+            return _blogDal.BlogWithCategoryList(x => x.Title != null && x.Title.Contains(search) && x.Status == true && x.Category.Status == true);
         }
 
         public Blog? GetBlogById(int id)
@@ -65,17 +65,17 @@ namespace BusinessLayer.Concrete
 
         public List<Blog>? BlogListByCategory(string categoryName)
         {
-            return _blogDal.BlogWithCategoryList(x => x.Category != null && x.Category.Name == categoryName);
+            return _blogDal.BlogWithCategoryList(x => x.Category != null  && x.Category.Name == categoryName && x.Status == true && x.Category.Status == true);
         }
 
         public List<Blog>? BlogListByAuthor(string authorName)
         {
-            return _blogDal.BlogWithCategoryList(x => x.AppUser != null && x.AppUser.UserName == authorName);
+            return _blogDal.BlogWithCategoryList(x => x.AppUser != null && x.AppUser.UserName == authorName && x.Status == true && x.Category.Status == true);
         }
 
         public List<Hashtag>? BlogListByHashtag(string hashtagName)
         {
-            return _blogDal.GetBlogWithHashtagList(x => x.Name == hashtagName);
+            return _blogDal.GetBlogWithHashtagList(x => x.Name == hashtagName && x.Blog.Status == true && x.Blog.Category.Status == true);
         }
     }
 }

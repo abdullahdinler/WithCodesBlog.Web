@@ -20,9 +20,9 @@ namespace DataAccessLayer.EntityFramework
             _context = context;
         }
 
-        public List<Blog>? GetBlogList()
+        public List<Blog>? GetBlogList(Expression<Func<Blog, bool>> filter)
         {
-            var values = _context.Blogs?.Include(x => x.Category).Include(x=>x.Comments).Include(x=>x.Hashtags).Include(x => x.AppUser).OrderByDescending(x => x.CreateDate).ToList();
+            var values = _context.Blogs?.Include(x => x.Category).Include(x=>x.Comments).Include(x=>x.Hashtags).Include(x => x.AppUser).Where(filter).OrderByDescending(x => x.CreateDate).ToList();
             return values;
         }
 

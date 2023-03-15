@@ -42,15 +42,13 @@
 
 
 <script>
-    var errorMessage = '@TempData["ErrorMessage"]';
-    if (errorMessage) {
-        Swal.fire({
-            title: 'Hata!',
-            icon: 'error',
-            text: errorMessage
-        });
+
+    var startValue = "@((string)TempData["ErrorMessage"])";
+    if (startValue != null && startValue != "") {
+        swal.fire("Hata!", "Kullanıcı adı veya şifre hatalı.", "error");
     }
 </script>
+
 
 </html>
 

@@ -21,11 +21,11 @@ namespace BusinessLayer.ValidationRules
                 .Must(password => password.Any(char.IsDigit)).WithMessage("Şifreniz en az bir rakam içermelidir.")
                 .Must(password => password.Any(char.IsLetter)).WithMessage("Şifreniz en az bir harf içermelidir.");
             RuleFor(x => x.ImageUri)
-                .NotEmpty().WithMessage("Resim alanı boş bırakılamaz.")
-                .Must(image => image.EndsWith(".jpg") || image.EndsWith(".jpeg") || image.EndsWith(".png"))
-                .WithMessage("Resim alanına sadece JPG, JPEG veya PNG formatında dosya yükleyebilirsiniz.");
-
-
+                .Must(fileName =>
+                    string.IsNullOrEmpty(fileName) ||
+                    new[] { ".jpg", ".jpeg", ".png", ".bmp", ".gif" }
+                        .Contains(Path.GetExtension(fileName).ToLowerInvariant()))
+                .WithMessage("Lütfen geçerli bir resim dosyası seçin.");
         }
     }
 }

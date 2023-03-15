@@ -10,7 +10,7 @@ namespace DataAccessLayer.Abstract
 {
     public interface IBlogDal : IGenericRepository<Blog>
     {
-        List<Blog>? GetBlogList();
+        List<Blog>? GetBlogList(Expression<Func<Blog, bool>> filter);
         Blog? GetBlog(Expression<Func<Blog, bool>> filter);
         List<Blog>? BlogWithCategoryList(Expression<Func<Blog, bool>> filter);
         List<Hashtag>? GetBlogWithHashtagList(Expression<Func<Hashtag, bool>> filter);

@@ -29,20 +29,20 @@
         <div class="row">
             <div class="col-12">
                 <div class="card">
-                    <form asp-controller="Author" asp-action="Index" method="post" >
-                    <div class="card-header">
-                        <div class="card-tools">
-                            <div class="input-group input-group-sm" style="width: 150px;">
-                                <input type="text" name="table_search" class="form-control float-right" placeholder="Yazar ara">
+                    <form asp-controller="Author" asp-action="Index" method="post">
+                        <div class="card-header">
+                            <div class="card-tools">
+                                <div class="input-group input-group-sm" style="width: 150px;">
+                                    <input type="text" name="search" class="form-control float-right" placeholder="Yazar ara">
 
-                                <div class="input-group-append">
-                                    <button type="submit" class="btn btn-default">
-                                        <i class="fas fa-search"></i>
-                                    </button>
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-default">
+                                            <i class="fas fa-search"></i>
+                                        </button>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-                    </div>
                     </form>
                     <!-- /.card-header -->
                     <div class="card-body table-responsive p-0">
@@ -51,17 +51,23 @@
                                 <tr>
                                     <th>Görsel</th>
                                     <th>Yazar Adı</th>
-                                    <th>Yetki İşlemleri</th>
+                                    <th>Yetki</th>
+                                    <th>Sil</th>
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach (var item in Model)
                                 {
                                     <tr>
-                                        <td> <div class="image"> <img src="/adminpanel/dist/img/user2-160x160.jpg" class="img-circle img-md" alt="User Image"> </div></td>
+                                        <td><img src="@item.ImageUri" class="img-circle img-sm" alt="User Image"></td>
                                         <td>@item.NameSurname</td>
-                                        <td><a class="btn btn-outline-dark" href="/Admin/Author/AssignRole/@item.Id">Yetkiyi Düzenle</a></td>
+                                        <td>
+                                        <a class="btn btn-outline-warning sm" asp-controller="Author" asp-action="AssignRole" asp-route-id="@item.Id">Düzenle</a>
+                                        </td>
+
+                                        <td><a class="btn btn-outline-danger" id="delet" href="@Url.Action("Delete", "Author", new { id = @item.Id })">Sil</a></td>
                                     </tr>
+                                   
                                 }
 
                             </tbody>
@@ -75,5 +81,50 @@
     </div>
     <div class="col-md-12">
         <div class="align-self-center">@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}))  </div>
-        </div>
+    </div>
 </section>
+
+
+
+
+@section Scripts
+    {
+   
+    <script type="text/javascript">
+        $('.btn-outline-danger').on('click', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            Swal.fire({
+                title: 'Yazarı silmek istediğinizden emin misiniz?',
+                text: "Bu işlem geri alınamaz!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Evet, sil!',
+                cancelButtonText: 'Vazgeç'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        success: function (result) {
+                            if (result) {
+                                Swal.fire(
+                                    'Silindi!',
+                                    'Yzar başarıyla silindi.',
+                                    'success'
+                                ).then(() => {
+                                    location.reload();
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
+}
+
+

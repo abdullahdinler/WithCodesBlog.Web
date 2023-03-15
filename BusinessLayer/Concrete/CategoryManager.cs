@@ -42,5 +42,10 @@ namespace BusinessLayer.Concrete
         {
            _categoryDal.Delete(entity);
         }
+
+        public List<Category> CategoriesWithBlogs()
+        {
+            return _categoryDal.GetByBlogCategories();
+        }
     }
 }

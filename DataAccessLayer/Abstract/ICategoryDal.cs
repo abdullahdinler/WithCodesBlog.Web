@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface ICategoryDal:IGenericRepository<Category>
     {
+        List<Category> GetByBlogCategories();
     }
 }

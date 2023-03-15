@@ -16,8 +16,10 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.ViewModels
         [Required(ErrorMessage = "Lütfen bir şifre giriniz.")]
         public string? PasswordHash { get; set; }
 
-
         [Required(ErrorMessage = "Lütfen yazarı için bir gorsel seciniz.")]
         public string? ImageUri { get; set; }
+
+        [Required(ErrorMessage = "Lütfen bir rol belirleyin")]
+        public string? IsAdmin { get; set; }
     }
 }

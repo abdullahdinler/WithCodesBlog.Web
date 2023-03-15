@@ -9,7 +9,7 @@
             <ul>
                 @foreach (var item in Model)
                 {
-                    <li><a asp-controller="Blog" asp-action="BlogByCategoryList" asp-route-categoryName="@item.Name">- @item.Name (@item.Blogs.Count)</a></li>
+                    <li><a asp-controller="Blog" asp-action="BlogByCategoryList" asp-route-categoryName="@item.Name">- @item.Name (@item.Blogs?.Count)</a></li>
                 }
 
             </ul>
