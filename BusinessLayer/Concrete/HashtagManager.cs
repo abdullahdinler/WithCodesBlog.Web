@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using BusinessLayer.Abstract;
 using DataAccessLayer.Abstract;
 using EntityLayer.Concrete;
+using X.PagedList;
 
 namespace BusinessLayer.Concrete
 {
@@ -41,6 +42,11 @@ namespace BusinessLayer.Concrete
         public void Delete(Hashtag entity)
         {
             _hashtagDal.Delete(entity);
+        }
+
+        public List<Hashtag>? GetHashtagWithBlog()
+        {
+            return _hashtagDal.GetByHashtagBlogs();
         }
     }
 }

@@ -1,0 +1,88 @@
+﻿@model List<SocialMedia>
+@{
+    ViewData["Title"] = "Index";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+@{
+    string color = "";
+    string status = "";
+
+}
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Sosyal Medya Listesi</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Sosyal Medya İşlemleri</a></li>
+                    <li class="breadcrumb-item active">Sosyal Medya Listesi</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 10px">#</th>
+                                    <th>Sosyal Medya Adı</th>
+                                    <th class="text-center">Adres</th>
+                                    <th>Durum</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    @if (@item.Status)
+                                    {
+                                        status = "Aktif";
+                                        color = "success";
+                                    }
+                                    else
+                                    {
+                                        color = "danger";
+                                        status = "Pasif";
+                                    }
+                                    <tr>
+                                        <td>@item.Id</td>
+                                        <td>@item.Icon</td>
+
+                                        <td class="text-center">
+                                            <a asp-area="Admin" asp-controller="SocialMedia" asp-action="Edit" asp-route-id="@item.Id" class="btn btn-outline-warning">Düzenle</a>
+                                          
+                                        </td>
+                                        <td><a asp-area="Admin" asp-controller="SocialMedia" asp-action="Status" asp-route-id="@item.Id" class="btn btn-outline-@color">@status</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                </div>
+
+            </div>
+        </div>
+    </div>
+</section>
+
+
+

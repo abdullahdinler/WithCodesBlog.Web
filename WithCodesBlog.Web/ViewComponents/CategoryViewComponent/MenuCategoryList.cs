@@ -14,7 +14,7 @@ namespace WithCodesBlog.Web.UI.ViewComponents.CategoryViewComponent
 
         public async Task<IViewComponentResult> InvokeAsync()
         {
-            var result = await Task.Run(() => _category.GetAll());
+            var result = await Task.Run(() => _category.GetAll(x => x.Status == true));
             return View(result);
         }
     }

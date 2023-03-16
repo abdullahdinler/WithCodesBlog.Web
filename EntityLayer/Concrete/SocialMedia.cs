@@ -11,5 +11,6 @@ namespace EntityLayer.Concrete
     {
         public string? Icon { get; set; }
         public string? SocialMediaUri { get; set; }
+        public bool Status { get; set; }
     }
 }

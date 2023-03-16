@@ -1,0 +1,72 @@
+﻿@model Contact
+@{
+    ViewData["Title"] = "Mesajı Oku";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Mesajı Oku</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="/Admin/Message/">Gelen Kutusu</a></li>
+                    <li class="breadcrumb-item active">Mesajı Oku</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-12">
+                <div class="card card-primary card-outline">
+                    <div class="card-header">
+                        <h3 class="card-title">Mesajı Oku</h3>
+
+                        <div class="card-tools">
+                            <a href="#" class="btn btn-tool" title="Previous"><i class="fas fa-chevron-left"></i></a>
+                            <a href="#" class="btn btn-tool" title="Next"><i class="fas fa-chevron-right"></i></a>
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <div class="mailbox-read-info">
+                            <h5>@Model.Subject</h5>
+                            <h6>
+                                Kimden: @Model.Email
+                                <span class="mailbox-read-time float-right">@Model.SendingDate.ToString("dd MMM yyyy hh:mm:ss")</span>
+                            </h6>
+                        </div>
+                        <!-- /.mailbox-read-info -->
+                        <div class="mailbox-controls with-border text-center">
+                           
+                            <!-- /.btn-group -->
+                           
+                        </div>
+                        <!-- /.mailbox-controls -->
+                        <div class="mailbox-read-message">
+
+                            <p>
+                               @Model.Message
+                            </p>
+
+                           
+                        </div>
+                        <!-- /.mailbox-read-message -->
+                    </div>
+  
+                    <div class="card-footer">
+                        <button asp-controller="Message" asp-action="Delete" asp-route-selectedIds="@Model.Id" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Sil</button>
+                    </div>
+                    <!-- /.card-footer -->
+                </div>
+                <!-- /.card -->
+            </div>
+        </div>
+    </div>
+</section>

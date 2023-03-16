@@ -12,7 +12,7 @@ namespace BusinessLayer.ValidationRules
     {
         public SocialMediaValidator()
         {
-            RuleFor(x => x.Icon).NotEmpty().WithMessage("Lütfen bir icon giriniz");
+            //RuleFor(x => x.Icon).NotEmpty().WithMessage("Lütfen bir icon giriniz");
             RuleFor(x => x.SocialMediaUri).NotEmpty().WithMessage("Lütfen sosyal medya adresinizi giriniz");
         }
     }

@@ -32,10 +32,6 @@
                 <div class="down-contact">
                     <div class="row">
                         <div class="col-lg-8">
-                            @if (TempData["Alert"] != null)
-                            {
-                                <div class="alert alert-success" role="alert">@TempData["Alert"]</div>
-                            }
                             <div class="sidebar-item contact-form">
                                 <div class="sidebar-heading">
                                     <h2>BİZE MESAJ GÖNDER</h2>
@@ -112,10 +108,19 @@
 </section>
 
 @section Scripts
-    {
+{
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
-
+    <script>
+        var errorMessage = @TempData["Alert"]?.ToString();
+        if (errorMessage) {
+            Swal.fire({
+                title: '',
+                icon: 'success',
+                text: errorMessage
+            });
+        }
+    </script>
 }
 

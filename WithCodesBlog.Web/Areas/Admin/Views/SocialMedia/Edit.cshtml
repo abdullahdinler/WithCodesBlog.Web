@@ -1,0 +1,54 @@
+﻿@model SocialMedia
+@{
+    ViewData["Title"] = "Edit";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<div class="modal fade" id="editModal_RoleId" tabindex="-1" role="dialog" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <form asp-controller="SocialMedia" asp-action="Edit" method="post">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editModalLabel">Sosyal Medya Adresi Düzenleme</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                    <input type="hidden" asp-for="Id" />
+                        <input type="hidden" asp-for="Icon" />
+                        <input type="hidden" asp-for="Status" />
+                        <input type="url" class="form-control" asp-for="SocialMediaUri" />
+                        <span class="text-danger" asp-validation-for="SocialMediaUri"></span>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-outline-secondary" data-dismiss="modal">Kapat</button>
+                    <button type="submit" class="btn btn-outline-primary">Kaydet</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+@section Scripts
+    {
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+    <script>
+        $('#editModal_RoleId').on('hidden.bs.modal', function (e) {
+            window.location.href = '/Admin/SocialMedia/';
+        });
+    </script>
+    <script>
+        $(function () {
+            $('#editModal_RoleId').modal('show');
+        });
+    </script>
+}
+
+

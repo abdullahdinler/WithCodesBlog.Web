@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface IHastagService:IGenericService<Hashtag>
     {
+       List<Hashtag>? GetHashtagWithBlog();
     }
 }

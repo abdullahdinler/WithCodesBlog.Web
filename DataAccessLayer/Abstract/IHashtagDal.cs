@@ -9,5 +9,6 @@ namespace DataAccessLayer.Abstract
 {
     public interface IHashtagDal:IGenericRepository<Hashtag>
     {
+        List<Hashtag>? GetByHashtagBlogs();
     }
 }

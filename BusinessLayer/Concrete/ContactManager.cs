@@ -42,5 +42,10 @@ namespace BusinessLayer.Concrete
         {
             _contactDal.Delete(entity);
         }
+
+        public List<Contact>? SearchContacts(string search)
+        {
+            return _contactDal.GetAll(x => x.FullName != null && x.FullName.Contains(search));
+        }
     }
 }
