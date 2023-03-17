@@ -108,18 +108,16 @@
 </section>
 
 @section Scripts
-{
+    {
 
     <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
     <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-        var errorMessage = @TempData["Alert"]?.ToString();
-        if (errorMessage) {
-            Swal.fire({
-                title: '',
-                icon: 'success',
-                text: errorMessage
-            });
+        var startValue = "@((string)TempData["ErrorMessage"])";
+        if (startValue != null && startValue != "") {
+            swal.fire("Başarılı!", "@TempData["ErrorMessage"]", "success");
         }
     </script>
 }

@@ -15,7 +15,7 @@ namespace WithCodesBlog.Web.UI.ViewModels
         public string? UserEmail { get; set; }
 
         [Required(ErrorMessage = "Yorum alanı zorunludur.")]
-        [MaxLength(500, ErrorMessage = "Yorum alanı en fazla 500 karakter olabilir.")]
+        [MaxLength(1000, ErrorMessage = "Yorum alanı en fazla 1000 karakter olabilir.")]
         public string? CommentText { get; set; }
 
         public string? ReturnUrl { get; set; }

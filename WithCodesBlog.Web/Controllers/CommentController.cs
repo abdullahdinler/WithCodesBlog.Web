@@ -19,11 +19,12 @@ namespace WithCodesBlog.Web.UI.Controllers
         private ValidationResult _validation;
         private readonly IMapper _mapper;
 
-        public CommentController(CommentManager comment, CommentValidator validator, IMapper mapper)
+        public CommentController(CommentManager comment, CommentValidator validator, IMapper mapper, ValidationResult validation)
         {
             _comment = comment;
             _validator = validator;
             _mapper = mapper;
+            _validation = validation;
         }
 
         

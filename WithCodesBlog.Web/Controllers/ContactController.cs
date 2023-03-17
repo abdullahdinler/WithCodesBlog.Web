@@ -17,11 +17,12 @@ namespace WithCodesBlog.Web.UI.Controllers
         private ValidationResult _validationResult;
         private readonly IMapper _mapper;
 
-        public ContactController(ContactManager contactManager, ContactValidator validator, IMapper mapper)
+        public ContactController(ContactManager contactManager, ContactValidator validator, IMapper mapper, ValidationResult validationResult)
         {
             _contactManager = contactManager;
             _validator = validator;
             _mapper = mapper;
+            _validationResult = validationResult;
         }
 
 
@@ -32,7 +33,7 @@ namespace WithCodesBlog.Web.UI.Controllers
             var contact = _contactManager.GetAllList()!.FirstOrDefault();
             if (contact != null)
             {
-                 return View(contact);
+               return View(contact);
             }
 
             return NotFound();
@@ -54,7 +55,7 @@ namespace WithCodesBlog.Web.UI.Controllers
                 contact.BlogEmail = null;
                 contact.BlogAddress = null;
                 contact.PhoneNumber = null;
-                TempData["Alert"] = "Mesajınız başarılı bir şekilde gönderildi.";
+                TempData["ErrorMessage"] = "Mesajınız başarılı bir şekilde gönderildi.";
                 _contactManager.Add(contact);
                 return RedirectToAction(nameof(Index));
             }

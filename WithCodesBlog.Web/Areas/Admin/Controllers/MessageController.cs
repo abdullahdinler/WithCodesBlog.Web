@@ -21,7 +21,6 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
 
         public async Task<IActionResult> Index(string search, int? page)
         {
-            ViewBag.Alert = TempData["Durum"] as string;
             int _page = page ?? 1;
             string _search = search ?? "";
 
@@ -66,9 +65,10 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
                     {
                         TempData["Durum"] = "Mesaj başarılı bir şekilde silindi.";
                         _contactManager.Delete(messages);
+                       
                     }
                 }
-                return RedirectToAction("Index" ,"Message");
+                return RedirectToAction(nameof(Index));
             }
 
             return NotFound();

@@ -44,25 +44,28 @@
                         </div>
                         <!-- /.mailbox-read-info -->
                         <div class="mailbox-controls with-border text-center">
-                           
+
                             <!-- /.btn-group -->
-                           
+
                         </div>
                         <!-- /.mailbox-controls -->
                         <div class="mailbox-read-message">
 
                             <p>
-                               @Model.Message
+                                @Model.Message
                             </p>
 
-                           
+
                         </div>
                         <!-- /.mailbox-read-message -->
                     </div>
-  
-                    <div class="card-footer">
-                        <button asp-controller="Message" asp-action="Delete" asp-route-selectedIds="@Model.Id" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Sil</button>
-                    </div>
+                    <form method="post" action="@Url.Action("Delete", "Message")">
+                        @Html.AntiForgeryToken()
+                        <input type="hidden" name="selectedIds[]" value="@Model.Id" />
+                        <div class="card-footer">
+                            <button type="submit" class="btn btn-outline-danger"><i class="far fa-trash-alt"></i> Sil</button>
+                        </div>
+                    </form>
                     <!-- /.card-footer -->
                 </div>
                 <!-- /.card -->

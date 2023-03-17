@@ -89,7 +89,17 @@
 
 @section Scripts
     {
-   
+    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        var startValue = "@((string)TempData["Durum"])";
+        if (startValue != null && startValue != "") {
+            swal.fire("Başarılı!", "@TempData["Durum"]", "success");
+        }
+    </script>
+
+
+
     <script type="text/javascript">
         $('.btn-outline-danger').on('click', function (e) {
             e.preventDefault();

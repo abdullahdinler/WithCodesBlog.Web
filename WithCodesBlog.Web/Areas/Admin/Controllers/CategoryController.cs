@@ -31,7 +31,8 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
             {
                 return View(categories);
             }
-            return View();
+
+            return NotFound();
         }
 
 
@@ -43,7 +44,7 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
                 category.Status = !category.Status;
                 _categoryManager.Update(category);
             }
-            return RedirectToAction("Index");
+            return RedirectToAction(nameof(Index));
         }
 
 

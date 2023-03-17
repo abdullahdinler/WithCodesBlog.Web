@@ -52,7 +52,6 @@
 
                     <form asp-area="Admin" asp-controller="Message" asp-action="Delete" method="post">
                         @Html.AntiForgeryToken()
-
                         <div class="mailbox-controls">
                             <!-- Check all button -->
                             <button type="button" class="btn btn-default btn-sm checkbox-toggle">
@@ -102,7 +101,7 @@
         <!-- /.col -->
     </div>
     <div class="float-right">
-        @Html.PagedListPager((IPagedList)Model, page => Url.Action("Index","Message", new {page}))
+        @Html.PagedListPager((IPagedList<Contact>)Model, page => Url.Action("Index","Message", new {page}))
     </div>
     <!-- /.row -->
 </section>
@@ -111,18 +110,14 @@
 @section Scripts
     {
 
-
+    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script>
-        var errorMessage = @ViewBag.Alert?.ToString();
-        if (errorMessage) {
-            Swal.fire({
-                title: '',
-                icon: 'success',
-                text: errorMessage
-            });
+        var startValue = "@((string)TempData["Durum"])";
+        if (startValue != null && startValue != "") {
+            swal.fire("Başarılı!", "@TempData["Durum"]", "success");
         }
     </script>
-
 
     <script>
         $(function () {
@@ -154,6 +149,6 @@
                     $this.toggleClass('fa-star-o')
                 }
             })
-        })
+        });
     </script>
 }

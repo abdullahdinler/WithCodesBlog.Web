@@ -4,25 +4,22 @@
         <div class="sidebar-heading">
             <h2>Yorum Yap</h2>
         </div>
-        @if (TempData["Alert"] != null)
-        {
-        <div class="alert alert-success">@TempData["Alert"]</div>
-        }
         <div class="content">
             <form asp-controller="Comment" asp-action="CommentAdd" method="post">
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
                 <div class="row">
                     <input type="hidden" asp-for="BlogId" value="@TempData["id"]">
                     <input type="hidden" asp-for="ReturnUrl" value="@Context.Request.Path" />
                     <div class="text-danger" asp-validation-summary="All"></div>
                     <div class="col-md-6 col-sm-12">
                         <fieldset>
-                            <input asp-for="UserName" type="text"  placeholder="Adınız Soyadınız" required="">
+                            <input asp-for="UserName" type="text" placeholder="Adınız Soyadınız" required="">
                             <span class="text-danger" asp-validation-for="UserName"></span>
                         </fieldset>
                     </div>
                     <div class="col-md-6 col-sm-12">
                         <fieldset>
-                            <input asp-for="UserEmail" type="text"  placeholder="Email" required="">
+                            <input asp-for="UserEmail" type="text" placeholder="Email" required="">
                             <span class="text-danger" asp-validation-for="UserEmail"></span>
                         </fieldset>
                     </div>
@@ -42,3 +39,16 @@
         </div>
     </div>
 </div>
+
+
+
+<script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+<script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+<script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+<script>
+    var startValue = "@((string)TempData["Alert"])";
+    if (startValue != null && startValue != "") {
+        swal.fire("Başarılı!", "@TempData["Alert"]", "success");
+    }
+</script>

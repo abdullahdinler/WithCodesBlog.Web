@@ -93,6 +93,7 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
 
             if (validation.IsValid)
             {
+                TempData["Durum"] = "Yazar başarılı bir şekilde oluşturuldu";
 
                 // burada yeni bir kullanıcı oluşturuldu.
                 var result = await _userManager.CreateAsync(appUser, viewModel.PasswordHash);
