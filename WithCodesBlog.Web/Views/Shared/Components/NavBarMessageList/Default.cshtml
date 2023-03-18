@@ -1,0 +1,43 @@
+﻿@model List<Contact>
+
+
+
+<li class="nav-item dropdown">
+
+    <a class="nav-link" data-toggle="dropdown" href="#">
+        <i class="far fa-comments"></i>
+        <span class="badge badge-danger navbar-badge">@Model.Count(x=>x.Status)</span>
+    </a>
+
+    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
+
+        @if (@Model.Count(x => x.Status) != 0)
+        {
+            @foreach (var item in Model.Where(x=>x.Status))
+            {
+                <a href="/Admin/Message/ReadMessage/@item.Id" class="dropdown-item">
+                    <!-- Message Start -->
+                    <div class="media">
+                        <img src="/adminpanel/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
+                        <div class="media-body">
+                            <h3 class="dropdown-item-title">
+                                @item.FullName
+                            </h3>
+                            <p class="text-sm">@*@(item?.Message.Length >= 10 ? item.Message.Substring(0, 110) : item.Message)*@......</p>
+                            <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> @item.SendingDate.ToString("dd MMM yyyy h:mm:ss")</p>
+                        </div>
+                    </div>
+                    <!-- Message End -->
+                </a>
+                <div class="dropdown-divider"></div>
+            }
+        }
+        else
+        {
+            <p class="text-center">Tüm mesajlar okundu</p>
+            <div class="dropdown-divider"></div>
+        }
+
+        <a href="/Admin/Message/" class="dropdown-item dropdown-footer">Tüm Mesajları Görüntüle</a>
+    </div>
+</li>

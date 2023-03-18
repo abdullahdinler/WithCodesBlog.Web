@@ -35,96 +35,16 @@
                 <li class="nav-item">
                     <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
                 </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="index3.html" class="nav-link">Ana Sayfa</a>
-                </li>
-                <li class="nav-item d-none d-sm-inline-block">
-                    <a href="#" class="nav-link">İletişim</a>
-                </li>
             </ul>
 
             <!-- Right navbar links -->
             <ul class="navbar-nav ml-auto">
                 <!-- Navbar Search -->
-                <li class="nav-item">
-                    <a class="nav-link" data-widget="navbar-search" href="#" role="button">
-                        <i class="fas fa-search"></i>
-                    </a>
-                    <div class="navbar-search-block">
-                        <form class="form-inline">
-                            <div class="input-group input-group-sm">
-                                <input class="form-control form-control-navbar" type="search" placeholder="Search" aria-label="Search">
-                                <div class="input-group-append">
-                                    <button class="btn btn-navbar" type="submit">
-                                        <i class="fas fa-search"></i>
-                                    </button>
-                                    <button class="btn btn-navbar" type="button" data-widget="navbar-search">
-                                        <i class="fas fa-times"></i>
-                                    </button>
-                                </div>
-                            </div>
-                        </form>
-                    </div>
-                </li>
-
                 <!-- Messages Dropdown Menu -->
-                <li class="nav-item dropdown">
-                    <a class="nav-link" data-toggle="dropdown" href="#">
-                        <i class="far fa-comments"></i>
-                        <span class="badge badge-danger navbar-badge">3</span>
-                    </a>
-                    <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="/adminpanel/dist/img/user1-128x128.jpg" alt="User Avatar" class="img-size-50 mr-3 img-circle">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Brad Diesel
-                                        <span class="float-right text-sm text-danger"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">Call me whenever you can...</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="/adminpanel/dist/img/user8-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        John Pierce
-                                        <span class="float-right text-sm text-muted"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">I got your message bro</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item">
-                            <!-- Message Start -->
-                            <div class="media">
-                                <img src="/adminpanel/dist/img/user3-128x128.jpg" alt="User Avatar" class="img-size-50 img-circle mr-3">
-                                <div class="media-body">
-                                    <h3 class="dropdown-item-title">
-                                        Nora Silvester
-                                        <span class="float-right text-sm text-warning"><i class="fas fa-star"></i></span>
-                                    </h3>
-                                    <p class="text-sm">The subject goes here</p>
-                                    <p class="text-sm text-muted"><i class="far fa-clock mr-1"></i> 4 Hours Ago</p>
-                                </div>
-                            </div>
-                            <!-- Message End -->
-                        </a>
-                        <div class="dropdown-divider"></div>
-                        <a href="#" class="dropdown-item dropdown-footer">See All Messages</a>
-                    </div>
-                </li>
+                @if (User.IsInRole("Admin"))
+                {
+                    <vc:nav-bar-message-list></vc:nav-bar-message-list>
+                }
                 <!-- Notifications Dropdown Menu -->
                 <li class="nav-item dropdown">
                     <a class="nav-link" data-toggle="dropdown" href="#">
@@ -224,65 +144,58 @@
                                 </p>
                             </a>
                         </li>
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-folder"></i>
+                                    <p>
+                                        Kategori İşlemleri
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Admin/Category/" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Kategori Listesi</p>
 
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-folder"></i>
-                                <p>
-                                    Kategori İşlemleri
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/Admin/Category/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Kategori Listesi</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Admin/Category/NewCategory" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Yeni Kategori Ekle</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
 
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/Admin/Category/NewCategory" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Yeni Kategori Ekle</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-pencil-alt"></i>
+                                    <p>
+                                        Yazar İşlemleri
+                                        <i class="fas fa-angle-left right"></i>
+                                    </p>
+                                </a>
+                                <ul class="nav nav-treeview">
+                                    <li class="nav-item">
+                                        <a href="/Admin/Author/" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Yazar Listesi</p>
+                                        </a>
+                                    </li>
+                                    <li class="nav-item">
+                                        <a href="/Admin/Author/NewAuthor" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Yeni Yazar Ekle</p>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </li>
+                        }
 
-                      @*  <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-hashtag"></i>
-                                <p>
-                                    Hashtag İşlemleri
-                                </p>
-                            </a>
-
-                        </li>*@
-
-                        <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-pencil-alt"></i>
-                                <p>
-                                    Yazar İşlemleri
-                                    <i class="fas fa-angle-left right"></i>
-                                </p>
-                            </a>
-                            <ul class="nav nav-treeview">
-                                <li class="nav-item">
-                                    <a href="/Admin/Author/" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Yazar Listesi</p>
-                                    </a>
-                                </li>
-                                <li class="nav-item">
-                                    <a href="/Admin/Author/NewAuthor" class="nav-link">
-                                        <i class="far fa-circle nav-icon"></i>
-                                        <p>Yeni Yazar Ekle</p>
-                                    </a>
-                                </li>
-                            </ul>
-                        </li>
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -293,33 +206,69 @@
                             </a>
                         </li>
 
+                        @if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item">
+                                <a href="/Admin/SocialMedia/" class="nav-link">
+                                    <i class="nav-icon fas fa-share"></i>
+                                    <p>
+                                        Sosyal Medya İşlemieri
+                                    </p>
+                                </a>
+                            </li>
 
-                        <li class="nav-item">
-                            <a href="/Admin/SocialMedia/" class="nav-link">
-                                <i class="nav-icon fas fa-share"></i>
-                                <p>
-                                    Sosyal Medya İşlemieri
-                                </p>
-                            </a>
-                        </li>
 
-                        <li class="nav-item">
-                            <a href="/Admin/Message/" class="nav-link">
-                                <i class="nav-icon fas fa-envelope"></i>
-                                <p>
-                                    Mesajlar
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="/Admin/Message/" class="nav-link">
+                                    <i class="nav-icon fas fa-envelope"></i>
+                                    <p>
+                                        Mesajlar
+                                    </p>
+                                </a>
+                            </li>
+                        }
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
                                 <i class="nav-icon fas fa-bell"></i>
                                 <p>
                                     Bildirimler
+                                    <i class="fas fa-angle-left right"></i>
+                                </p>
+                            </a>
+                            <ul class="nav nav-treeview">
+                                <li class="nav-item">
+                                    <a href="/Admin/Notification/" class="nav-link">
+                                        <i class="far fa-circle nav-icon"></i>
+                                        <p>Gelen Bildirimler</p>
+                                    </a>
+                                </li>
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li class="nav-item">
+                                        <a href="/Admin/Notification/Sender" class="nav-link">
+                                            <i class="far fa-circle nav-icon"></i>
+                                            <p>Bildirim Gönder</p>
+                                        </a>
+                                    </li>
+                                }
+
+                            </ul>
+                        </li>
+
+
+                        @if (User.IsInRole("Admin"))
+                        {
+                             <li class="nav-item">
+                            <a href="#" class="nav-link">
+                                <i class="nav-icon fas fa-info"></i>
+                                <p>
+                                    Hakkımızda
                                 </p>
                             </a>
                         </li>
+                        }
+                       
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -330,7 +279,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a href="/Blog/index" class="nav-link">
                                 <i class="nav-icon fas fa-external-link-alt"></i>
                                 <p>
                                     Siteye Git
@@ -338,7 +287,7 @@
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a href="#" class="nav-link">
+                            <a asp-area="Admin" asp-controller="Login" asp-action="Logout" class="nav-link">
                                 <i class="nav-icon fas fa-sign-out-alt"></i>
                                 <p>
                                     Çıkış Yap

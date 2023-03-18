@@ -43,5 +43,11 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
             return View(model);
         }
 
+        public async Task<IActionResult> Logout()
+        {
+            await _sign.SignOutAsync();
+
+            return RedirectToAction(nameof(Index));
+        }
     }
 }
