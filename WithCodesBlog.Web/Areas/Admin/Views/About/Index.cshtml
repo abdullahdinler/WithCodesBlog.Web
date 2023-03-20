@@ -1,0 +1,79 @@
+﻿@model About
+@{
+    ViewData["Title"] = "Hakkımızda Düzenle";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Hakkımızda Düzenle</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Hakkımızda</a></li>
+                    <li class="breadcrumb-item active">Hakkımızda Düzenle</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+
+<div class="col-12 grid-margin stretch-card">
+    <div class="card">
+        <div class="card-body">
+            <h4 class="card-title"></h4>
+            <p class="card-description">  </p>
+            <form asp-area="Admin" asp-controller="About" asp-action="Index" class="forms-sample" method="post" enctype="multipart/form-data">
+                @Html.AntiForgeryToken()
+                <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                <input type="hidden" asp-for="ImageUri" value="@Model.ImageUri" />
+                <input type="hidden" asp-for="Id" value="@Model.Id" />
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label for="ImageUri">Görsel</label>
+                        <div class="custom-file">
+                            <input type="file" asp-for="ImageUri" class="custom-file-input" id="ImageUri">
+                            <label class="custom-file-label" for="ImageUri">Resim Seç</label>
+                        </div>
+                        <span class="text-danger" asp-validation-for="ImageUri"></span>
+                    </div>
+
+
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group col-md-12">
+                        <label>Hakkımızda</label>
+                        <textarea asp-for="ContentText" id="summernote" class="form-control" rows="10"></textarea>
+                        <span class="text-danger" asp-validation-for="ContentText"></span>
+                    </div>
+                </div>
+
+                <button type="submit" class="btn btn-outline-success mr-2">Düzenle</button>
+            </form>
+        </div>
+    </div>
+</div>
+
+
+<script>
+    $(document).ready(function () {
+        $('#summernote').summernote();
+    });
+</script>
+
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+
+
+}
+
+

@@ -44,7 +44,7 @@
                                     <th style="width: 10px">#</th>
                                     <th>Konu</th>
                                     <th class="text-center">İçerik</th>
-                                    
+                                    <th></th>
                                 </tr>
                             </thead>
                             <tbody>
@@ -57,7 +57,7 @@
                                         <td class="text-center">
                                             @item.ContentText
                                         </td>
-                                       
+                                       <td><a class="btn btn-outline-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a></td>
                                     </tr>
                                 }
 
@@ -71,4 +71,18 @@
         </div>
     </div>
 </section>
+@section Scripts
+{
+
+    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        var startValue = "@((string)TempData["Alert"])";
+        if (startValue != null && startValue != "") {
+            swal.fire("Başarılı!", "@TempData["Alert"]", "success");
+            swal.fire("Başarılı!", "@TempData["Alert"]", "success");
+        }
+    </script>
+
+}
 

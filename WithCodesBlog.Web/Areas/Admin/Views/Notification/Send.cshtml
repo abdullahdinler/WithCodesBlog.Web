@@ -1,0 +1,71 @@
+﻿@model Notification
+@{
+    ViewData["Title"] = "Add";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Bildirim Gönder</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Bildirimler</a></li>
+                    <li class="breadcrumb-item active">Bildirim Gönder</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<div class="row">
+
+    <div class="col-12 grid-margin stretch-card">
+        <div class="card">
+            <div class="card-body">
+                <form asp-controller="Notification" asp-action="Send" class="forms-sample" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+                    <div class="form-group">
+                        <label for="Title">Konu</label>
+                        <div class="input-group">
+                            <input type="text" asp-for="Title" id="Title" class="form-control" placeholder="Konu" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-transparent">
+                                    <i class="fa fa-tag text-primary"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="Title" class="text-danger"></span>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ContentText">İçerik</label>
+                        <div class="input-group">
+                            <input type="text" asp-for="ContentText" id="ContentText" class="form-control" placeholder="İçerik" required>
+                            <div class="input-group-append">
+                                <span class="input-group-text bg-transparent">
+                                    <i class="fa fa-tag text-primary"></i>
+                                </span>
+                            </div>
+                        </div>
+                        <span asp-validation-for="ContentText" class="text-danger"></span>
+                    </div>
+                    <button type="submit" class="btn btn-outline-primary mr-2">Gönder</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts
+    {
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation-unobtrusive/jquery.validate.unobtrusive.min.js"></script>
+}
+

@@ -13,12 +13,14 @@
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
     <!-- Font Awesome Icons -->
     <link rel="stylesheet" href="/adminpanel/plugins/fontawesome-free/css/all.min.css">
+    <link rel="stylesheet" href="/adminpanel/plugins/summernote/summernote-bs4.min.css">
     <!-- overlayScrollbars -->
     <link rel="stylesheet" href="/adminpanel/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminpanel/dist/css/adminlte.min.css">
     <link href="~/css/pagedlist.css" rel="stylesheet" />
-
+   
+   
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -246,7 +248,7 @@
                                 @if (User.IsInRole("Admin"))
                                 {
                                     <li class="nav-item">
-                                        <a href="/Admin/Notification/Sender" class="nav-link">
+                                        <a href="/Admin/Notification/Send" class="nav-link">
                                             <i class="far fa-circle nav-icon"></i>
                                             <p>Bildirim Gönder</p>
                                         </a>
@@ -259,16 +261,16 @@
 
                         @if (User.IsInRole("Admin"))
                         {
-                             <li class="nav-item">
-                            <a href="#" class="nav-link">
-                                <i class="nav-icon fas fa-info"></i>
-                                <p>
-                                    Hakkımızda
-                                </p>
-                            </a>
-                        </li>
+                            <li class="nav-item">
+                                <a href="#" class="nav-link">
+                                    <i class="nav-icon fas fa-info"></i>
+                                    <p>
+                                        Hakkımızda
+                                    </p>
+                                </a>
+                            </li>
                         }
-                       
+
 
                         <li class="nav-item">
                             <a href="#" class="nav-link">
@@ -344,6 +346,7 @@
     <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
     <script src="/adminpanel/dist/js/pages/dashboard2.js"></script>
+    <script src="~/adminpanel/plugins/summernote/summernote-bs4.min.js"></script>
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>
