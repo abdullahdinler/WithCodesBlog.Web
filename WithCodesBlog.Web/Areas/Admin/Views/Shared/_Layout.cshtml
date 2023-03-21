@@ -19,8 +19,8 @@
     <!-- Theme style -->
     <link rel="stylesheet" href="/adminpanel/dist/css/adminlte.min.css">
     <link href="~/css/pagedlist.css" rel="stylesheet" />
-   
-   
+
+
 </head>
 <body class="hold-transition dark-mode sidebar-mini layout-fixed layout-navbar-fixed layout-footer-fixed">
     <div class="wrapper">
@@ -262,7 +262,7 @@
                         @if (User.IsInRole("Admin"))
                         {
                             <li class="nav-item">
-                                <a href="#" class="nav-link">
+                                <a href="/Admin/About/Index" class="nav-link">
                                     <i class="nav-icon fas fa-info"></i>
                                     <p>
                                         Hakkımızda
@@ -334,19 +334,12 @@
     <script src="/adminpanel/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
     <!-- AdminLTE App -->
     <script src="/adminpanel/dist/js/adminlte.js"></script>
-
-    <!-- PAGE /adminpanel/plugins -->
-    <!-- jQuery Mapael -->
-    <script src="/adminpanel/plugins/jquery-mousewheel/jquery.mousewheel.js"></script>
-    <script src="/adminpanel/plugins/raphael/raphael.min.js"></script>
-    <script src="/adminpanel/plugins/jquery-mapael/jquery.mapael.min.js"></script>
-    <script src="/adminpanel/plugins/jquery-mapael/maps/usa_states.min.js"></script>
+    <script src="~/adminpanel/plugins/summernote/summernote-bs4.min.js"></script>
     <!-- ChartJS -->
     <script src="/adminpanel/plugins/chart.js/Chart.min.js"></script>
-    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
-    <script src="/adminpanel/dist/js/pages/dashboard2.js"></script>
-    <script src="~/adminpanel/plugins/summernote/summernote-bs4.min.js"></script>
+   @* <script src="/adminpanel/dist/js/pages/dashboard2.js"></script>*@
+
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

@@ -67,7 +67,7 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
                 about.ImageUri = about.ImageUri;
                 _aboutManager.Update(about);
                 TempData["Durum"] = "Sitenin hakkımızda kısmı düzenlendi.";
-                return RedirectToAction("Index","Category");
+                return RedirectToAction("Index", "Category");
             }
             else
             {
@@ -77,6 +77,27 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
                 }
             }
             return View();
+        }
+
+
+
+        // Summernote da eklenen resimleri images dosyasına kayıt yapıp summernote dosyanın adını geri döndürür.
+        [HttpPost]
+        public async Task<IActionResult> UploadImage(IFormFile file)
+        {
+            if (file != null && file.Length > 0)
+            {
+                var fileName = Guid.NewGuid().ToString() + Path.GetExtension(file.FileName);
+                var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "images", fileName);
+
+                using (var fileStream = new FileStream(filePath, FileMode.Create))
+                {
+                    await file.CopyToAsync(fileStream);
+                }
+
+                return Json(new { fileName });
+            }
+            return BadRequest();
         }
     }
 }
