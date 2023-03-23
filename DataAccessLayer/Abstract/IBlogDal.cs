@@ -14,7 +14,5 @@ namespace DataAccessLayer.Abstract
         Blog? GetBlog(Expression<Func<Blog, bool>> filter);
         List<Blog>? BlogWithCategoryList(Expression<Func<Blog, bool>> filter);
         List<Hashtag>? GetBlogWithHashtagList(Expression<Func<Hashtag, bool>> filter);
-
-
     }
 }

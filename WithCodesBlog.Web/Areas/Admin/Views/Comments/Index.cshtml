@@ -1,0 +1,107 @@
+﻿@model IPagedList<Comment>
+@{
+    ViewData["Title"] = "Yorumlar";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+@{
+    string color = "";
+    string status = "";
+}
+
+
+<!-- Content Header (Page header) -->
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yorumlar</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Yorum İşlemleri</a></li>
+                    <li class="breadcrumb-item active">Yorumlar</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+
+            <div class="col-md-12">
+                <div class="card">
+                    <div class="card-header">
+                        <h3 class="card-title"></h3>
+
+                        <div class="card-tools">
+                            
+                        </div>
+                    </div>
+                    <!-- /.card-header -->
+                    <div class="card-body p-0">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th style="width: 20px">#</th>
+                                    <th>Yorum</th>
+                                    <th class="text-center">Blog</th>
+                                    <th></th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @foreach (var item in Model)
+                                {
+                                    if (item.Status)
+                                    {
+                                        color = "success";
+                                        status = "Aktif";
+                                    }
+                                    else
+                                    {
+                                        color = "danger";
+                                        status = "Pasif";
+                                    }
+
+                                    <tr>
+                                        <td>@(item.UserName.Length >= 6 ? item.UserName.Substring(0, 6) : item.UserName).</td>
+                                        <td>@(item?.CommentText.Length >= 30 ? item.CommentText.Substring(0, 30) : item.CommentText) </td>
+
+                                        <td class="text-center">
+                                           @item.Blog.Title
+                                        </td>
+                                        <td><a class="btn btn-danger" asp-action="Delete" asp-route-id="@item.Id">Sil</a></td>
+                                        <td><a class="btn btn-outline-@color" asp-action="Status" asp-route-id="@item.Id">@status</a></td>
+                                        <td><a class="btn btn-outline-warning" asp-action="Answer" asp-route-id="@item.Id">Cevapla</a></td>
+                                    </tr>
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                    <!-- /.card-body -->
+                    <div class="text-right">@Html.PagedListPager((IPagedList)Model, page => Url.Action("Index", new {page}))  </div>
+                </div>
+               
+            </div>
+        </div>
+    </div>
+</section>
+@section Scripts
+{
+
+    <script src="~/adminpanel/plugins/jquery/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@10"></script>
+    <script>
+        var startValue = "@((string)TempData["Alert"])";
+        if (startValue != null && startValue != "") {
+            swal.fire("Başarılı!", "@TempData["Alert"]", "success");
+            swal.fire("Başarılı!", "@TempData["Alert"]", "success");
+        }
+    </script>
+}
+
+

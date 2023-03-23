@@ -45,7 +45,13 @@ namespace BusinessLayer.Concrete
 
         public List<Comment>? GetAllList(string slug)
         {
-            return _commentDal.GetAll(x => x.Blog.Slug == slug).Where(x => x.Status == true).ToList();
+            //return _commentDal.GetAll(x => x.Blog.Slug == slug).Where(x => x.Status == true).ToList();
+            return _commentDal.GetCoomentWithBlogAuthor(x => x.Blog.Slug == slug).Where(x => x.Status == true).ToList();
+        }
+
+        public List<Comment>? GetCommentByBlogAuthor(int id)
+        {
+            return _commentDal.GetCoomentWithBlogAuthor(x => x.Blog.AppUserId == id);
         }
     }
 }

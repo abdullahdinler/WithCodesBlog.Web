@@ -13,6 +13,7 @@ namespace EntityLayer.Concrete
         public string? ImageUri { get; set; }
 
         public virtual ICollection<Blog>? Blogs { get; set; }
+        public virtual ICollection<CommentAnswer>? CommentAnswers { get; set; }
 
     }
 }

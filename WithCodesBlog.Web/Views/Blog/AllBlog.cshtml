@@ -43,7 +43,7 @@
                                                 <li><a href="#">@item.CreateDate.ToString("dd MMM yyyy")</a></li>
                                                 <li><a href="#">@item.Comments.Count Yorum</a></li>
                                             </ul>
-                                            <p>@item.ContentText.Substring(0,200)...</p>
+                                            <p>@(item?.ContentText.Length >= 30 ? item.ContentText.Substring(0, 200) : item.ContentText)......</p>
                                             <div class="post-options">
                                                 <div class="row">
                                                     <div class="col-lg-12">

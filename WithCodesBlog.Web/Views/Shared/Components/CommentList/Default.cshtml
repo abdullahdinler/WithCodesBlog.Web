@@ -14,7 +14,7 @@
                     @foreach (var item in Model)
                     {
                         <li>
-                            <div class="author-thumb" style="padding-right: 0px;">
+                            <div class="author-thumb my-auto" style="padding-right: 0px;">
                                 <img style="padding-right: 0px;" class="img-fluid w-50 h-50" src="/images/avatar.png" alt="@item.UserName">
                             </div>
                             <div class="right-content">
@@ -22,6 +22,23 @@
                                 <p>@item.CommentText</p>
                             </div>
                         </li>
+                        @if (item.CommentAnswers.Count > 0)
+                        {
+                            @foreach (var answer in item.CommentAnswers.ToList())
+                            {
+                                <li class="replied">
+                                    <div class="author-thumb my-auto  my-2 mb-0">
+                                        <img src="/images/avatar.png" class="img-fluid w-50 h-50 mb-0" alt="@answer.AppUser.NameSurname">
+                                    </div>
+                                    <div class="right-content">
+                                        <h4>@answer.AppUser.NameSurname<span> @answer.SendingDate.ToString("dd MMM yyyy hh:mm:ss")</span></h4>
+                                        <p>@answer.Answer</p>
+                                    </div>
+                                </li>
+                            }
+
+                        }
+
                         <br />
                     }
                 </ul>

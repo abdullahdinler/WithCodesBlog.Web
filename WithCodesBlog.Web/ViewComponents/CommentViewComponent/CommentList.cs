@@ -15,6 +15,7 @@ namespace WithCodesBlog.Web.UI.ViewComponents.CommentViewComponent
         public IViewComponentResult Invoke(string slug)
         {
             var comments = _comment.GetAllList(slug);
+            
             if (comments != null)
             {
                 return View(comments);

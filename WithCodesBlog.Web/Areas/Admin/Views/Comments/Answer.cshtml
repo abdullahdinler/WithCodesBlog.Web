@@ -1,0 +1,61 @@
+﻿@model Comment
+@{
+    ViewData["Title"] = "Answer";
+    Layout = "~/Areas/Admin/Views/Shared/_Layout.cshtml";
+}
+
+<section class="content-header">
+    <div class="container-fluid">
+        <div class="row mb-2">
+            <div class="col-sm-6">
+                <h1>Yorum Detay</h1>
+            </div>
+            <div class="col-sm-6">
+                <ol class="breadcrumb float-sm-right">
+                    <li class="breadcrumb-item"><a href="#">Yorumlar</a></li>
+                    <li class="breadcrumb-item active">Yorum Detay</li>
+                </ol>
+            </div>
+        </div>
+    </div><!-- /.container-fluid -->
+</section>
+
+<section class="content">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="card-body">
+                <div class="tab-content">
+                    <div class="active tab-pane" id="activity">
+                        <!-- Post -->
+                        <div class="post clearfix">
+                            <div class="user-block">
+                                <img class="img-circle img-bordered-sm" src="/adminpanel/dist/img/user1-128x128.jpg" alt="User Image">
+                                <span class="username">
+                                    <a href="#">@Model.UserName</a>
+                                    <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
+                                </span>
+                                <span class="description">@Model.SendingDate.ToString("dd MMM yyyy hh:mm:ss")</span>
+                            </div>
+                            <!-- /.user-block -->
+                            <p>
+                                @Model.CommentText
+                            </p>
+
+                            <form asp-action="" method="post" class="form-horizontal">
+                                <div class="input-group input-group-sm mb-0">
+                                    <input class="form-control form-control-sm" placeholder="Yanıtınızı giriniz">
+                                    <div class="input-group-append">
+                                        <button type="submit" class="btn btn-danger">Gönder</button>
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                    <!-- /.tab-pane -->
+                    <!-- /.tab-pane -->
+                </div>
+                <!-- /.tab-content -->
+            </div>
+        </div>
+    </div>
+</section>
