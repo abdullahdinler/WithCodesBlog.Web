@@ -9,5 +9,6 @@ namespace BusinessLayer.Abstract
 {
     public interface ICommentAnswerService : IGenericService<CommentAnswer>
     {
+        CommentAnswer? GetCommentAnswerByComment(int id);
     }
 }

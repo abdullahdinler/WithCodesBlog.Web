@@ -11,5 +11,6 @@ namespace DataAccessLayer.Abstract
     public interface ICommentDal:IGenericRepository<Comment>
     {
         List<Comment>? GetCoomentWithBlogAuthor(Expression<Func<Comment, bool>> filter);
+        Comment? GetCommentAnswerWithComment(Expression<Func<Comment, bool>> filter);
     }
 }

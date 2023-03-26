@@ -12,8 +12,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace DataAccessLayer.Migrations
 {
     [DbContext(typeof(WithCodesContext))]
-    [Migration("20230323211746_answerComment")]
-    partial class answerComment
+    [Migration("20230326202305_Mig_CommentAnswer")]
+    partial class Mig_CommentAnswer
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -257,7 +257,7 @@ namespace DataAccessLayer.Migrations
                     b.Property<string>("Answer")
                         .HasColumnType("nvarchar(max)");
 
-                    b.Property<int?>("AppUserId")
+                    b.Property<int>("AppUserId")
                         .HasColumnType("int");
 
                     b.Property<int>("CommentId")
@@ -268,9 +268,6 @@ namespace DataAccessLayer.Migrations
 
                     b.Property<bool>("Status")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
@@ -526,12 +523,14 @@ namespace DataAccessLayer.Migrations
                 {
                     b.HasOne("EntityLayer.Concrete.AppUser", "AppUser")
                         .WithMany("CommentAnswers")
-                        .HasForeignKey("AppUserId");
+                        .HasForeignKey("AppUserId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.HasOne("EntityLayer.Concrete.Comment", "Comment")
                         .WithMany("CommentAnswers")
                         .HasForeignKey("CommentId")
-                        .OnDelete(DeleteBehavior.Cascade)
+                        .OnDelete(DeleteBehavior.Restrict)
                         .IsRequired();
 
                     b.Navigation("AppUser");

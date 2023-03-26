@@ -28,6 +28,11 @@ namespace BusinessLayer.Concrete
             _answerDal.Delete(entity);
         }
 
+        public CommentAnswer? GetCommentAnswerByComment(int id)
+        {
+            return _answerDal.GetCommentAnswerWithComment(x=>x.CommentId == id);
+        }
+
         public CommentAnswer? Get(int id)
         {
             return _answerDal.GetById(x => x.Id == id);

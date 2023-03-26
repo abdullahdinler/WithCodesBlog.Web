@@ -11,11 +11,21 @@ namespace DataAccessLayer.Concrete
 {
     public class WithCodesContext : IdentityDbContext<AppUser, AppRole, int>
     {
-        public WithCodesContext(DbContextOptions options) :base(options)
+        public WithCodesContext(DbContextOptions options) : base(options)
         {
-            
+
         }
-        
+
+        protected override void OnModelCreating(ModelBuilder modelBuilder)
+        {
+            base.OnModelCreating(modelBuilder);
+            modelBuilder.Entity<CommentAnswer>()
+                .HasOne(ca => ca.Comment)
+                .WithMany(c => c.CommentAnswers)
+                .HasForeignKey(ca => ca.CommentId)
+                .OnDelete(DeleteBehavior.Restrict);
+        }
+
 
         public DbSet<AppUser>? AppUsers { get; set; }
         public DbSet<About>? Abouts { get; set; }

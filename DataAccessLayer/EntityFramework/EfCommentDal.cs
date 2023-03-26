@@ -25,5 +25,10 @@ namespace DataAccessLayer.EntityFramework
         {
             return _context.Comments?.Include(x=>x.Blog).Include(x=>x.CommentAnswers).Where(filter).ToList();
         }
+
+        public Comment? GetCommentAnswerWithComment(Expression<Func<Comment, bool>> filter)
+        {
+            return _context.Comments?.Include(x => x.CommentAnswers).Where(filter).SingleOrDefault();
+        }
     }
 }

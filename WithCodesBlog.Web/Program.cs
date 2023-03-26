@@ -81,6 +81,10 @@ builder.Services.AddScoped<ICommentDal, EfCommentDal>();
 builder.Services.AddScoped<CommentManager>();
 builder.Services.AddScoped<Comment>();
 
+builder.Services.AddScoped<ICommentAnswerService, CommentAnswerManager>();
+builder.Services.AddScoped<ICommentAnswerDal, EfCommentAnswerDal>();
+builder.Services.AddScoped<CommentAnswerManager>();
+
 builder.Services.AddScoped<ICategoryService, CategoryManager>();
 builder.Services.AddScoped<ICategoryDal, EfCategoryDal>();
 builder.Services.AddScoped<CategoryManager>();

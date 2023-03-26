@@ -29,7 +29,7 @@
                         <!-- Post -->
                         <div class="post clearfix">
                             <div class="user-block">
-                                <img class="img-circle img-bordered-sm" src="/adminpanel/dist/img/user1-128x128.jpg" alt="User Image">
+                                <img class="img-circle img-bordered-sm" src="/adminpanel/dist/img/user1-128x128.jpg" alt="@Model.UserName">
                                 <span class="username">
                                     <a href="#">@Model.UserName</a>
                                     <a href="#" class="float-right btn-tool"><i class="fas fa-times"></i></a>
@@ -40,13 +40,15 @@
                             <p>
                                 @Model.CommentText
                             </p>
-
-                            <form asp-action="" method="post" class="form-horizontal">
+                            <form asp-controller="Comments" asp-action="Answer" method="post" class="form-horizontal">
+                                @Html.AntiForgeryToken()
+                                <input type="hidden" name="CommentId" value="@Model.Id" />
                                 <div class="input-group input-group-sm mb-0">
-                                    <input class="form-control form-control-sm" placeholder="Yanıtınızı giriniz">
+                                    <input class="form-control form-control-sm" name="Answer" placeholder="Yanıtınızı giriniz">
                                     <div class="input-group-append">
                                         <button type="submit" class="btn btn-danger">Gönder</button>
                                     </div>
+
                                 </div>
                             </form>
                         </div>

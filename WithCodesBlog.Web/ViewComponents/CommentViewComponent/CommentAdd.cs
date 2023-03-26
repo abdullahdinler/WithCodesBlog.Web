@@ -6,7 +6,7 @@ using WithCodesBlog.Web.UI.ViewModels;
 
 namespace WithCodesBlog.Web.UI.ViewComponents.CommentViewComponent
 {
-    public class CommentAdd:ViewComponent
+    public class CommentAdd : ViewComponent
     {
         private readonly Comment _comment;
         private readonly IMapper _mapper;

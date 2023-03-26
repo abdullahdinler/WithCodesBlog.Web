@@ -49,18 +49,18 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
 
         public IActionResult Delete(int id)
         {
+            var comment = _comment.Get(id);
             try
             {
-                var comment = _comment.Get(id);
                 if (comment == null) return NotFound();
-
+                TempData["Alert"] = "Yorum başarılı bir şekilde silindi";
                 _comment.Delete(comment);
                 return RedirectToAction(nameof(Index));
             }
             catch (Exception e)
             {
-
-                return BadRequest(e.Message);
+                TempData["AlertDanger"] = "Yorum yanıtlandığı için silme işlemi başarısız.";
+                return RedirectToAction(nameof(Index));
             }
         }
 
@@ -86,7 +86,7 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
         {
             try
             {
-                var comment = _comment.Get(id);
+                var comment = _comment.GetCommentAnswerByComment(id);
                 if (comment == null) return NotFound();
 
                 return View(comment);
@@ -101,25 +101,40 @@ namespace WithCodesBlog.Web.UI.Areas.Admin.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Answer([FromForm] CommentAnswer answer)
+        public async Task<IActionResult> Answer([FromForm] CommentAnswer modelAnswer)
         {
+            if (User.Identity?.Name == null) return NotFound();
+            var user = await _userManager.FindByNameAsync(User.Identity?.Name);
+            var userId = await _userManager.GetUserIdAsync(user);
+
             try
             {
-                ValidationResult vr = await _validator.ValidateAsync(answer);
+                ValidationResult vr = await _validator.ValidateAsync(modelAnswer);
                 if (vr.IsValid)
                 {
-                    answer.Status = true;
-                    return View();
+                    modelAnswer.Status = true;
+                    modelAnswer.AppUserId = int.Parse(userId);
+                    TempData["Alert"] = "Yorum başarılı bir şekilde cevaplandı";
+
+                    _answerManager.Add(modelAnswer);
+                    return RedirectToAction(nameof(Index));
+
+                }
+                else
+                {
+                    foreach (var error in vr.Errors)
+                    {
+                        ModelState.AddModelError(error.PropertyName, error.ErrorMessage);
+                    }
                 }
 
-
             }
-            catch (Exception)
+            catch (Exception e)
             {
 
-                throw;
+                return BadRequest(e.Message);
             }
-            return View();
+            return RedirectToAction(nameof(Answer));
         }
 
 

@@ -16,6 +16,6 @@ namespace EntityLayer.Concrete
         public bool Status { get; set; }
 
         public Blog? Blog { get; set; }
-        public virtual ICollection<CommentAnswer>? CommentAnswers { get; set; }
+        public virtual ICollection<CommentAnswer> CommentAnswers { get; set; }
     }
 }

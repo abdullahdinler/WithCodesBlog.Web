@@ -53,5 +53,10 @@ namespace BusinessLayer.Concrete
         {
             return _commentDal.GetCoomentWithBlogAuthor(x => x.Blog.AppUserId == id);
         }
+
+        public Comment? GetCommentAnswerByComment(int id)
+        {
+            return _commentDal.GetCommentAnswerWithComment(x => x.Id == id);
+        }
     }
 }

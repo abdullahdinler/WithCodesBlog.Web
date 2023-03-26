@@ -99,9 +99,51 @@
         var startValue = "@((string)TempData["Alert"])";
         if (startValue != null && startValue != "") {
             swal.fire("Başarılı!", "@TempData["Alert"]", "success");
-            swal.fire("Başarılı!", "@TempData["Alert"]", "success");
         }
     </script>
+
+    <script>
+        var startValue = "@((string)TempData["AlertDanger"])";
+        if (startValue != null && startValue != "") {
+            swal.fire("Başarısız!", "@TempData["AlertDanger"]", "error");
+        }
+    </script>
+
+    <script type="text/javascript">
+        $('.btn-danger').on('click', function (e) {
+            e.preventDefault();
+            var url = $(this).attr('href');
+            Swal.fire({
+                title: 'Yorumu silmek istediğinizden emin misiniz?',
+                text: "Bu işlem geri alınamaz!",
+                icon: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#d33',
+                cancelButtonColor: '#3085d6',
+                confirmButtonText: 'Evet, sil!',
+                cancelButtonText: 'Vazgeç'
+            }).then((result) => {
+                if (result.value) {
+                    $.ajax({
+                        url: url,
+                        type: 'POST',
+                        success: function (result) {
+                            if (result) {
+                                Swal.fire(
+                                    'Silindi!',
+                                    'Yorum başarıyla silindi.',
+                                    'success'
+                                ).then(() => {
+                                    location.reload();
+                                });
+                            }
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+
 }
 
 

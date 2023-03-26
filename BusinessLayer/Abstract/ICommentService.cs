@@ -11,5 +11,6 @@ namespace BusinessLayer.Abstract
     {
         List<Comment>? GetAllList(string slug);
         List<Comment>? GetCommentByBlogAuthor(int id);
+        Comment? GetCommentAnswerByComment(int id);
     }
 }

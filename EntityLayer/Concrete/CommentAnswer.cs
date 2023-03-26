@@ -14,9 +14,14 @@ namespace EntityLayer.Concrete
         public bool Status { get; set; }
 
         public int AppUserId { get; set; }
-        public AppUser? AppUser { get; set; }
+        public virtual AppUser AppUser { get; set; }
 
         public int CommentId { get; set; }
-        public Comment? Comment { get; set; }
+        public virtual Comment Comment { get; set; }
+
+
+
+
+
     }
 }
