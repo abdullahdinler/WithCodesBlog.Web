@@ -1,0 +1,26 @@
+﻿@model WithCodesBlog.Web.UI.Areas.Admin.ViewModels.PasswordViewModel
+<form asp-controller="Profile" asp-action="ChangePassword" class="forms-sample" method="post">
+    @Html.AntiForgeryToken()
+    <div class="text-danger" asp-validation-summary="ModelOnly"></div>
+    <div class="form-group">
+        <label for="OldPassword">Mevcut Şifre:</label>
+        <input type="password" class="form-control" id="OldPassword" name="OldPassword" required="Şifre alanaı boş gecilemez">
+        <span class="text-red" asp-validation-for="OldPassword"></span>
+    </div>
+
+    <div class="form-row">
+        <div class="form-group col-md-6">
+            <label for="NewPassword">Yeni Şifre:</label>
+            <input type="password" class="form-control" id="NewPassword" name="NewPassword" minlength="6" required="Şifre alanaı boş gecilemez">
+            <span class="text-red" asp-validation-for="NewPassword"></span>
+
+        </div>
+        <div class="form-group col-md-6">
+            <label for="ConfirmNewPassword">Yeni Şifre Tekrar:</label>
+            <input type="password" class="form-control" id="ConfirmNewPassword" name="ConfirmNewPassword" minlength="6" required="Şifre alanaı boş gecilemez">
+            <span class="text-red" asp-validation-for="ConfirmNewPassword"></span>
+        </div>
+    </div>
+    <button type="submit" class="btn btn-outline-success mr-2">Şifreyi Güncelle</button>
+</form>
+<partial name="_ValidationScriptsPartial" />
