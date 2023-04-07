@@ -30,7 +30,7 @@
                     <div class="info-box-content">
                         <span class="info-box-text">Toplam Blog Sayısı</span>
                         <span class="info-box-number">
-                            10
+                            @ViewBag.BlogCount
                         </span>
                     </div>
                     <!-- /.info-box-content -->
@@ -44,7 +44,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Kategori Sayısı</span>
-                        <span class="info-box-number">5</span>
+                        <span class="info-box-number">@ViewBag.CategoryCount</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -60,7 +60,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Yazar Blog Sayısı</span>
-                        <span class="info-box-number">1</span>
+                        <span class="info-box-number">@ViewBag.AuthorBlogCount</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -73,7 +73,7 @@
 
                     <div class="info-box-content">
                         <span class="info-box-text">Yazar Sayısı</span>
-                        <span class="info-box-number">6</span>
+                        <span class="info-box-number">@ViewBag.AuthorCount</span>
                     </div>
                     <!-- /.info-box-content -->
                 </div>
@@ -87,254 +87,12 @@
 
 
         <div class="row">
-
-
-            <div class="col-md-6">
-                <!-- USERS LIST -->
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Yazar Listesi</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <ul class="users-list clearfix">
-                            <li>
-                                <img src="/adminpanel/dist/img/user1-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Alexander Pierce</a>
-                                <span class="users-list-date">Today</span>
-                            </li>
-                            <li>
-                                <img src="/adminpanel/dist/img/user8-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Norman</a>
-                                <span class="users-list-date">Yesterday</span>
-                            </li>
-                            <li>
-                                <img src="/adminpanel/dist/img/user7-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Jane</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                            <li>
-                                <img src="/adminpanel/dist/img/user6-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">John</a>
-                                <span class="users-list-date">12 Jan</span>
-                            </li>
-                            <li>
-                                <img src="/adminpanel/dist/img/user2-160x160.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Alexander</a>
-                                <span class="users-list-date">13 Jan</span>
-                            </li>
-                            <li>
-                                <img src="/adminpanel/dist/img/user5-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Sarah</a>
-                                <span class="users-list-date">14 Jan</span>
-                            </li>
-                            <li>
-                                <img src="/adminpanel/dist/img/user4-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Nora</a>
-                                <span class="users-list-date">15 Jan</span>
-                            </li>
-                            <li>
-                                <img src="/adminpanel/dist/img/user3-128x128.jpg" alt="User Image">
-                                <a class="users-list-name" href="#">Nadia</a>
-                                <span class="users-list-date">15 Jan</span>
-                            </li>
-                        </ul>
-                        <!-- /.users-list -->
-                    </div>
-                    <!-- /.card-body -->
-                    <div class="card-footer text-center">
-                        <a href="javascript:">Tüm Yazarları Göster</a>
-                    </div>
-                    <!-- /.card-footer -->
-                </div>
-                <!--/.card -->
-            </div>
-
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Kategori Listesi</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Kategori Adı</th>
-                                    <th class="text-center">Blog Sayısı</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>1</td>
-                                    <td>Kategori One</td>
-
-                                    <td class="text-center">
-                                        <span class="badge bg-blue">3</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Kategori Two</td>
-
-                                    <td class="text-center">
-                                        <span class="badge bg-blue">5</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Kategori There</td>
-
-                                    <td class="text-center">
-                                        <span class="badge bg-blue">1</span>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <div class="card-footer text-center">
-                            <a href="javascript:">Tüm Kategorileri Göster</a>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-
-            </div>
-
-
-
-            <!-- /.col -->
+            <vc:dashboard-author-list></vc:dashboard-author-list>
+            <vc:dashboard-category-list></vc:dashboard-category-list>
         </div>
         <div class="row">
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Yazar Blog Listesi</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th>Blog Adı</th>
-                                    <th class="text-center">Durum</th>
-
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                <tr>
-                                    <td>1</td>
-                                    <td>Blog One</td>
-
-                                    <td class="text-center">
-                                        <span class="badge bg-blue">Aktif</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>2</td>
-                                    <td>Blog Two</td>
-
-                                    <td class="text-center">
-                                        <span class="badge bg-blue">Aktif</span>
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>3</td>
-                                    <td>Blog There</td>
-
-                                    <td class="text-center">
-                                        <span class="badge bg-blue">Pasif</span>
-                                    </td>
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <div class="card-footer text-center">
-                            <a href="javascript:">Tüm Yazıları Göster</a>
-                        </div>
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-
-            </div>
-            <div class="col-md-6">
-                <div class="card">
-                    <div class="card-header">
-                        <h3 class="card-title">Yazar Yorum Listesi</h3>
-
-                        <div class="card-tools">
-                            <button type="button" class="btn btn-tool" data-card-widget="collapse">
-                                <i class="fas fa-minus"></i>
-                            </button>
-                        </div>
-                    </div>
-                    <!-- /.card-header -->
-                    <div class="card-body p-0">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th style="width: 10px">#</th>
-                                    <th class="text-center">Yorum</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>Ahmet .</td>
-                                    <td class="text-center">Lorem ipsumLorem ipsumLorem ip</td>
-                                </tr>
-                                <tr>
-                                    <td>Ayşe K.</td>
-                                    <td class ="text-center">Lorem ipsumLorem ipsumLorem ip</td>
-                                </tr>
-                                <tr>
-                                    <td>mustaf.</td>
-                                    <td class="text-center">Merhaba bu bir test yorumudur.</td>
-
-                                </tr>
-
-                            </tbody>
-                        </table>
-                        <div class="card-footer text-center">
-                            <a href="javascript:">Tüm Yorumları Göster</a>
-                        </div>
-
-                    </div>
-                    <!-- /.card-body -->
-                </div>
-
-            </div>
-
+            <vc:dashboard-author-by-blog-list></vc:dashboard-author-by-blog-list>
+            <vc:dashboard-author-by-comment></vc:dashboard-author-by-comment>
         </div>
-
-
-
-
-
     </div>
-    <!-- /.col -->
-    <!-- /.col -->
-
 </section>

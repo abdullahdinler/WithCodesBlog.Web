@@ -1,0 +1,46 @@
+﻿@model List<Category>
+<div class="col-md-6">
+    <div class="card">
+        <div class="card-header">
+            <h3 class="card-title">Kategori Listesi</h3>
+
+            <div class="card-tools">
+                <button type="button" class="btn btn-tool" data-card-widget="collapse">
+                    <i class="fas fa-minus"></i>
+                </button>
+            </div>
+        </div>
+        <!-- /.card-header -->
+        <div class="card-body p-0">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Kategori Adı</th>
+                        <th class="text-center">Blog Sayısı</th>
+
+                    </tr>
+                </thead>
+                <tbody>
+
+                    @foreach (var item in Model.Take(3))
+                    {
+                        <tr>
+
+                            <td>@item.Name</td>
+
+                            <td class="text-center">
+                                <span class="badge bg-blue">@item.Blogs.Count</span>
+                            </td>
+                        </tr>
+                    }
+
+                </tbody>
+            </table>
+            <div class="card-footer text-center">
+                <a href="/Admin/Category/">Tüm Kategorileri Göster</a>
+            </div>
+        </div>
+        <!-- /.card-body -->
+    </div>
+
+</div>
